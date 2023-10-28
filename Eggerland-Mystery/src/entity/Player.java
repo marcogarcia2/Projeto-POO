@@ -15,18 +15,23 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	KeyHandler keyH;
+	int hasKey = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solidArea = new Rectangle();
-			solidArea.x = 0;
+		solidArea = new Rectangle(0,0,48,48);
+			/*
+		    solidArea.x = 0;
 			solidArea.y = 0;
 			solidArea.width = gp.tileSize; //Esses valores determinam o hitbox do personagem, 0, 0 e (gp.tileSize) por padrao
 			solidArea.width = gp.tileSize;
-	
+			*/
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+		
 		setDefaultValues();
 		getPlayerImage();
 	}
@@ -73,6 +78,9 @@ public class Player extends Entity {
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			
+			//CHECK OBJECT COLLISION
+			int objIndex = gp.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
 			
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false) {
@@ -107,6 +115,31 @@ public class Player extends Entity {
 			}
 		}
 	}
+	
+	public void pickUpObject(int i) {
+	//Essa funcao eh responsavel pela interacao entre jogador e objeto	
+		
+		if(i != 999) {
+			
+			String objectName = gp.obj[i].name;
+			
+			switch(objectName) {
+			case "Key":
+				hasKey++;
+				gp.obj[i] = null;
+				System.out.println("Keys: " + hasKey);
+				break;
+			case "Door":
+				if(hasKey > 0) {
+					gp.obj[i] = null;
+					hasKey--;
+				}
+				System.out.println("Keys: " + hasKey);
+				break;
+			}
+		}
+	}
+	
 	public void draw(Graphics2D g2) {
 		
 		//g2.setColor(Color.white);
