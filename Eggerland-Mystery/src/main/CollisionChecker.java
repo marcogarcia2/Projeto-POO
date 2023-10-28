@@ -14,7 +14,7 @@ public class CollisionChecker {
 		int entityLeftWorldX = entity.x + entity.solidArea.x;
 		int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
 		int entityTopWorldY = entity.y + entity.solidArea.y;
-		int entityBottomWorldY = entity.y + gp.tileSize + entity.solidArea.y + entity.solidArea.height; //tem uma gambiarra aqui, foi adicionado o gp.tileSize pq o boneco tava indo um bloco a mais quando andando pra baixo
+		int entityBottomWorldY = entity.y + gp.tileSize + entity.solidArea.y + entity.solidArea.height; //tem uma gambiarra aqui, foi adicionado o gp.tileSize pq o boneco tava indo um bloco a mais quando andando pra baixos
 		
 		int entityLeftCol = entityLeftWorldX/gp.tileSize;
 		int entityRightCol = entityRightWorldX/gp.tileSize;
