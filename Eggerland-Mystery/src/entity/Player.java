@@ -22,7 +22,7 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solidArea = new Rectangle(0,0,48,48);
+		solidArea = new Rectangle(8,8,36,36);
 			/*
 		    solidArea.x = 0;
 			solidArea.y = 0;
@@ -37,8 +37,8 @@ public class Player extends Entity {
 	}
 	public void setDefaultValues() {
 		
-		x = 100;
-		y = 100;
+		x = 50;
+		y = 50;
 		speed = 4;
 		direction = "down";
 	}
