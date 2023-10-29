@@ -6,13 +6,16 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
+import javax.imageio.ImageIO;
+
 import object.OBJ_Key;
 
 public class UI {
 	
 	GamePanel gp;
-	Font arial_40, arial_80B;
+	Font arial_40, arial_80B, arial_20;
 	BufferedImage keyImage;
+	BufferedImage loloImage;
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -26,6 +29,7 @@ public class UI {
 		
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
 		arial_80B = new Font("Arial", Font.BOLD, 80);
+		arial_20 = new Font("Arial", Font.PLAIN, 20);
 		OBJ_Key key = new OBJ_Key();
 		keyImage = key.image;
 	}
@@ -60,7 +64,7 @@ public class UI {
 			x = gp.screenWidth/2 - textLength/2;
 			y = gp.screenHeight/2 + (gp.tileSize*4);
 			g2.drawString(text, x, y);
-			//ddsdd
+
 			g2.setFont(arial_80B);
 			g2.setColor(Color.yellow);
 			text = "Congratulations!";
@@ -76,12 +80,14 @@ public class UI {
 		else {
 			g2.setFont(arial_40);
 			g2.setColor(Color.white);
-			g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
-			g2.drawString("x " + gp.player.hasKey, 74, 65);
+			g2.drawImage(loloImage, 13*gp.tileSize, 3*gp.tileSize, gp.tileSize, gp.tileSize, null);
+			g2.drawImage(keyImage, 13*gp.tileSize, 4*gp.tileSize, gp.tileSize, gp.tileSize, null);
+			g2.drawString(" " + gp.player.hasKey, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
 			
 			// TIME
 			playTime += (double)1/60;
-			g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize*11, 65);
+			g2.setFont(arial_20);
+			g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize*13, gp.tileSize*12 -3);
 			
 			// MESSAGE
 			if(messageOn == true) {
