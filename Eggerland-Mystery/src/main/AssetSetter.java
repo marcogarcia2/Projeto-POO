@@ -4,6 +4,7 @@ import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Key;
+import object.OBJ_Bloco;
 
 public class AssetSetter {
 
@@ -51,7 +52,9 @@ public class AssetSetter {
 		gp.obj[8].worldX = 11 * gp.tileSize;
 		gp.obj[8].worldY = 11 * gp.tileSize;
 		
-		
+		gp.obj[9] = new OBJ_Bloco();
+		gp.obj[9].worldX = 3 * gp.tileSize;
+		gp.obj[9].worldY = 2 * gp.tileSize;
 		
 	}
 }
