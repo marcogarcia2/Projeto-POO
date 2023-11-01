@@ -5,6 +5,7 @@ import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Key;
 import object.OBJ_Bloco;
+import object.OBJ_Bloco2;
 
 public class AssetSetter {
 
@@ -24,12 +25,10 @@ public class AssetSetter {
 		gp.obj[1].worldX = 14 * gp.tileSize;
 		gp.obj[1].worldY = 1 * gp.tileSize;
 		
-		gp.obj[2] = new OBJ_Chest();
-		gp.obj[2].worldX = 13 * gp.tileSize;
-		gp.obj[2].worldY = 10 * gp.tileSize;
+		
 		
 		gp.obj[3] = new OBJ_Key();
-		gp.obj[3].worldX = 3 * gp.tileSize;
+		gp.obj[3].worldX = 3 * gp.tileSize; 
 		gp.obj[3].worldY = 7 * gp.tileSize;
 		
 		gp.obj[4] = new OBJ_Boots();
@@ -54,7 +53,11 @@ public class AssetSetter {
 		
 		gp.obj[9] = new OBJ_Bloco();
 		gp.obj[9].worldX = 3 * gp.tileSize;
-		gp.obj[9].worldY = 2 * gp.tileSize;
+		gp.obj[9].worldY = 6 * gp.tileSize;
+		
+		gp.obj[10] = new OBJ_Bloco();
+		gp.obj[10].worldX = 7 * gp.tileSize;
+		gp.obj[10].worldY = 6 * gp.tileSize;
 		
 	}
 }

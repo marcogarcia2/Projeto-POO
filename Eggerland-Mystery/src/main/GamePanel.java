@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
-	public SuperObject obj[] = new SuperObject[10]; //SuperObject[] recebe o numero de objetos simultaneos
+	public SuperObject obj[] = new SuperObject[256]; //SuperObject[] recebe o numero de objetos simultaneos
 	
 	// Set players's default position
 	int playerX = 100;

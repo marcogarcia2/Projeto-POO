@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Chest;
 
 public class Player extends Entity {
 
@@ -119,6 +120,13 @@ public class Player extends Entity {
 				}
 				spriteCounter = 0;
 			}
+			
+			if(hasKey == 6) {
+				gp.obj[2] = new OBJ_Chest();
+				gp.obj[2].worldX = 9 * gp.tileSize;
+				gp.obj[2].worldY = 6 * gp.tileSize;
+				
+			}
 		}
 	}
 	
@@ -155,9 +163,30 @@ public class Player extends Entity {
 			case "Chest":
 				gp.ui.gameFinished = true;
 				break;
+				
+			//controla a movimentacao do bloco verde
+			case "Bloco":
+				switch(direction) {
+				case "up":
+					gp.obj[i].worldY = gp.obj[i].worldY - gp.tileSize/4;
+					break;
+				case "down":
+					gp.obj[i].worldY = gp.obj[i].worldY + gp.tileSize/4;
+					break;
+				case "left":
+					gp.obj[i].worldX = gp.obj[i].worldX - gp.tileSize/4;
+					break;
+				case "right":
+					gp.obj[i].worldX = gp.obj[i].worldX + gp.tileSize/4;
+					break;
+				}
+
+				
+				
 			}
 		}
 	}
+	
 	
 	public void draw(Graphics2D g2) {
 		
