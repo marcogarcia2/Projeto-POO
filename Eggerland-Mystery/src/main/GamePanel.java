@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -33,12 +34,14 @@ public class GamePanel extends JPanel implements Runnable {
 	KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
+	public MonsterSetter monsterSetter = new MonsterSetter(this);
 	public UI ui = new UI(this);
 	Thread gameThread;
 	
 	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
 	public SuperObject obj[] = new SuperObject[256]; //SuperObject[] recebe o numero de objetos simultaneos
+	public Entity monsterList[] = new Entity[10];
 	
 	// Set players's default position
 	int playerX = 100;
@@ -57,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame() {
 		
 		aSetter.setObject();
+		monsterSetter.setMonsters();
 	}
 
 	public void startGameThread() {
@@ -121,6 +125,13 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		// PLAYER
 		player.draw(g2);
+		
+		// MONSTERS
+		for (int i = 0; i < monsterList.length; i++) {
+			if (monsterList[i] != null) {
+				monsterList[i].draw(g2);
+			}
+		}
 		
 		//UI
 		ui.draw(g2);
