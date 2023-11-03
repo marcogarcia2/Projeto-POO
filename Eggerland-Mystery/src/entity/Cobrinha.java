@@ -22,6 +22,8 @@ public class Cobrinha extends Entity{
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		
+		collisionOn = true;
+		
 		getCobrinhaImage();
 	}
 	

@@ -24,7 +24,7 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solidArea = new Rectangle(8,8,36,36);
+		solidArea = new Rectangle(8,8,32,32);
 			/*
 		    solidArea.x = 0;
 			solidArea.y = 0;
@@ -39,8 +39,8 @@ public class Player extends Entity {
 	}
 	public void setDefaultValues() {
 		
-		x = 50;
-		y = 50;
+		x = 48;
+		y = 48;
 		speed = 4;
 		direction = "down";
 	}
@@ -85,6 +85,10 @@ public class Player extends Entity {
 			//CHECK OBJECT COLLISION
 			int objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
+			
+			//CHECK MONSTER COLLISION
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
+			interactMonster(monsterIndex);
 			
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false) {
@@ -180,10 +184,13 @@ public class Player extends Entity {
 					gp.obj[i].worldX = gp.obj[i].worldX + gp.tileSize/4;
 					break;
 				}
-
-				
-				
 			}
+		}
+	}
+	
+	void interactMonster(int i) {
+		if (i != 999) {
+			System.out.println("You are hitting a monster!");
 		}
 	}
 	
