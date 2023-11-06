@@ -12,8 +12,8 @@ import main.GamePanel;
 public class Caveira extends Entity{
 
 	GamePanel gp;
-	private boolean awake = false;
 	private long timer = 0;
+	public boolean awake = false;
 	public BufferedImage sleep, angry1, angry2;
 	
 	public Caveira (GamePanel gp) {
@@ -52,10 +52,10 @@ public class Caveira extends Entity{
 		
 		else if (awake) {
 			
-			if (timer < 100) {
+			if (timer < 50) {
 				image = angry1;
 			}
-			else if (timer >= 100 && timer < 200) {
+			else if (timer >= 50 && timer < 100) {
 				image = angry2;
 			}
 			else {
@@ -64,8 +64,8 @@ public class Caveira extends Entity{
 			}
 			
 			timer++;
-			g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);	
 		}
+		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);	
 		
 	}
 }
