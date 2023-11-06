@@ -18,6 +18,7 @@ public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler keyH;
 	public int hasKey = 0;
+	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		

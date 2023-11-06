@@ -1,5 +1,6 @@
 package main;
 
+import entity.Caveira;
 import entity.Cobrinha;
 
 public class MonsterSetter {
@@ -15,7 +16,9 @@ public class MonsterSetter {
 		gp.monsterList[0].x = 2 * gp.tileSize;
 		gp.monsterList[0].y = 11 * gp.tileSize;
 		
-	
+		gp.monsterList[1] = new Caveira(gp);
+		gp.monsterList[1].x = 3 * gp.tileSize;
+		gp.monsterList[1].y = 1 * gp.tileSize;
 		
 		
 		

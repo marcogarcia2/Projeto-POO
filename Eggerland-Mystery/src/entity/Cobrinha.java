@@ -13,6 +13,7 @@ public class Cobrinha extends Entity{
 
 	GamePanel gp;
 	private long timer = 0;
+	public BufferedImage left1, right1, down1, down2;
 	
 	public Cobrinha(GamePanel gp) {
 		
