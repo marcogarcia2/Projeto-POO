@@ -21,9 +21,10 @@ public class CollisionChecker {
 		int entityTopRow = entityTopWorldY/gp.tileSize;
 		int entityBottomRow = entityBottomWorldY/gp.tileSize;
 		
-		int tileNum1, tileNum2;
+		int tileNum1, tileNum2; // duas possíveis colisões
 		
 		switch(entity.direction) { //preve onde o jogador vai estar depois de se mover
+		
 		case "up":
 			entityTopRow = (entityTopWorldY - entity.speed)/gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
@@ -31,7 +32,9 @@ public class CollisionChecker {
 			if(gp.tileM.tile[tileNum1].collision == true || gp.tileM.tile[tileNum2].collision == true) {
 				entity.collisionOn = true;
 			}
+			
 			break;
+			
 		case "down":
 			entityBottomRow = (entityBottomWorldY + entity.speed)/gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
@@ -40,6 +43,7 @@ public class CollisionChecker {
 				entity.collisionOn = true;
 			}
 			break;
+			
 		case "left":
 			entityLeftCol = (entityLeftWorldX - entity.speed)/gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
@@ -48,6 +52,7 @@ public class CollisionChecker {
 				entity.collisionOn = true;
 			}
 			break;
+			
 		case "right":
 			entityRightCol = (entityRightWorldX + entity.speed)/gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
@@ -58,6 +63,7 @@ public class CollisionChecker {
 			break;
 		}
 	}
+	
 	public int checkObject(Entity entity, boolean player) {
 		//Essa funcao checa se o hitbox do personagem esta em interseccao com algum objeto.
 		//Acho melhor ou diminur o hitbox do objeto, porque ele pega direto o objeto;
@@ -130,5 +136,65 @@ public class CollisionChecker {
 		}
 		
 		return index;
+	}
+	
+	public int checkEntity(Entity entity, Entity[] target) {
+		
+		int index = 999;//Representa o numero do objeto no vetor de objetos
+		
+		for(int i = 0; i < target.length; i++) {
+			
+			if(target[i] != null) {
+				// Get entity's solid area position
+				entity.solidArea.x = entity.x + entity.solidArea.x + 4;
+				entity.solidArea.y = entity.y + entity.solidArea.y + 4;
+				
+				// Get the object's solid area positiond
+				target[i].solidArea.x = target[i].x + target[i].solidArea.x;
+				target[i].solidArea.y = target[i].y + target[i].solidArea.y;				
+
+				
+				switch(entity.direction) {
+				
+				case "up":
+					entity.solidArea.y -= entity.speed;
+					if(entity.solidArea.intersects(target[i].solidArea)) {
+							entity.collisionOn = true;
+					}
+					break;
+					
+				case "down":
+					entity.solidArea.y += entity.speed;
+					if(entity.solidArea.intersects(target[i].solidArea)) {
+						entity.collisionOn = true;
+					}
+					break;
+					
+				case "left":
+					entity.solidArea.x -= entity.speed;
+					if(entity.solidArea.intersects(target[i].solidArea)) {
+						entity.collisionOn = true;
+						}
+					
+					break;
+					
+				case "right":
+					entity.solidArea.x += entity.speed;
+					if(entity.solidArea.intersects(target[i].solidArea)) {
+						entity.collisionOn = true;
+					break;
+					}
+				}
+				
+				entity.solidArea.x = entity.solidAreaDefaultX;
+				entity.solidArea.y = entity.solidAreaDefaultY;
+				target[i].solidArea.x = target[i].solidAreaDefaultX;
+				target[i].solidArea.y = target[i].solidAreaDefaultY;
+			} 
+		}
+		
+		return index;
+		
+		
 	}
 }

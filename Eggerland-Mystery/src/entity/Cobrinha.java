@@ -13,6 +13,7 @@ public class Cobrinha extends Entity{
 
 	GamePanel gp;
 	private long timer = 0;
+	public BufferedImage left1, right1, down1, down2;
 	
 	public Cobrinha(GamePanel gp) {
 		
@@ -21,6 +22,8 @@ public class Cobrinha extends Entity{
 		solidArea = new Rectangle(8,8,36,36);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
+		
+		collisionOn = true;
 		
 		getCobrinhaImage();
 	}
