@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Chest;
-import object.OBJ_Eggshot;
 
 public class Player extends Entity {
 
@@ -20,12 +19,6 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public int hasKey = 0;
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
-	
-
-	public boolean canShoot;
-	public int shotDelay;
-	long timeShot;
-	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		
@@ -49,12 +42,9 @@ public class Player extends Entity {
 		
 		x = 48;
 		y = 48;
-		speed = 2;
+		speed = 4;
 		direction = "down";
-		canShoot = false;
-		shotDelay = 800;
 	}
-	
 	public void getPlayerImage() {
 		try {
 			
@@ -141,23 +131,6 @@ public class Player extends Entity {
 				gp.obj[2].worldX = 9 * gp.tileSize;
 				gp.obj[2].worldY = 6 * gp.tileSize;
 				
-			}
-		}
-		
-		if (gp.keyH.spacePressed && canShoot) {
-			
-			canShoot = false;
-			timeShot = System.currentTimeMillis();
-			projectile = new OBJ_Eggshot(gp);
-			projectile.set(this.x, this.y, this.direction, this);
-			gp.projectileList.add(projectile);
-			
-		}
-		
-		if (!canShoot) {
-			
-			if (System.currentTimeMillis() - timeShot > shotDelay) {
-				canShoot = true;
 			}
 		}
 	}
