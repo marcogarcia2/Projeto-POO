@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import entity.Projectile;
 import object.SuperObject;
 import tile.TileManager;
 
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//SYSTEM
 	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler();
+	public KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public MonsterSetter monsterSetter = new MonsterSetter(this);
@@ -41,7 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
 	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
 	public SuperObject obj[] = new SuperObject[256]; //SuperObject[] recebe o numero de objetos simultaneos
-	public Entity monsterList[] = new Entity[10];
+	//public ArrayList<Entity> monsterList = new ArrayList<>();
+	public Entity[] monsterList = new Entity[10];
+	public ArrayList<Projectile> projectileList = new ArrayList<>();
 	
 	// Set players's default position
 	int playerX = 100;
@@ -106,6 +110,17 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		player.update();
 		
+		for (int i = 0; i < projectileList.size(); i++) {
+			if (projectileList.get(i) != null) {
+				if(projectileList.get(i).timer <= 150) { // depois de 2.5 segundos o tiro some
+					projectileList.get(i).update();
+				}
+				else {
+					projectileList.remove(i);
+				}
+			}
+		}
+		
 	}
 	public void paintComponent(Graphics g) {
 		
@@ -127,6 +142,13 @@ public class GamePanel extends JPanel implements Runnable {
 		for (int i = 0; i < monsterList.length; i++) {
 			if (monsterList[i] != null) {
 				monsterList[i].draw(g2);
+			}
+		}
+		
+		// PROJECTILES
+		for (int i = 0; i < projectileList.size(); i++) {
+			if (projectileList.get(i) != null) {
+				projectileList.get(i).draw(g2);
 			}
 		}
 		
