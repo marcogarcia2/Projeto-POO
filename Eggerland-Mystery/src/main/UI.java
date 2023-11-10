@@ -13,6 +13,7 @@ import object.OBJ_Key;
 public class UI {
 	
 	GamePanel gp;
+	Graphics2D g2;
 	Font arial_40, arial_80B, arial_20;
 	BufferedImage keyImage;
 	BufferedImage loloImage;
@@ -40,6 +41,15 @@ public class UI {
 		messageOn = true;
 	}
 	public void draw(Graphics2D g2) {
+		
+		this.g2 = g2;
+		
+		g2.setFont(arial_40);
+		g2.setColor(Color.white);
+		
+		if(gp.gameState == gp.playState) {
+			// Do playState stuff later
+		
 		
 		if(gameFinished == true) {
 			
@@ -102,6 +112,24 @@ public class UI {
 					messageOn = false;
 				}
 			}
+		  }
+		}
+		if(gp.gameState == gp.pauseState) {
+			drawPauseScreen();
 		}
 	}
+	
+	public void drawPauseScreen() {
+		
+		
+		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,90F));
+		String text = "Paused";
+		int x;
+		
+		x = gp.screenWidth/2;
+		int y = gp.screenHeight/2;
+		
+		g2.drawString(text, x, y);
+	}
+
 }
