@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//SYSTEM
 	TileManager tileM = new TileManager(this);
-	public KeyHandler keyH = new KeyHandler();
+	public KeyHandler keyH = new KeyHandler(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public MonsterSetter monsterSetter = new MonsterSetter(this);
@@ -46,6 +46,11 @@ public class GamePanel extends JPanel implements Runnable {
 	//public ArrayList<Entity> monsterList = new ArrayList<>();
 	public Entity[] monsterList = new Entity[10];
 	public ArrayList<Projectile> projectileList = new ArrayList<>();
+	
+	//GAME STATE
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2;
 	
 	// Set players's default position
 	int playerX = 100;
@@ -65,6 +70,8 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		aSetter.setObject();
 		monsterSetter.setMonsters();
+		
+		gameState = playState;
 	}
 
 	public void startGameThread() {
@@ -108,7 +115,13 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public void update() {
 		
-		player.update();
+		if(gameState == playState) {
+			player.update();
+		}
+		if(gameState == pauseState) {
+			// nada
+		}
+		
 		
 		for (int i = 0; i < projectileList.size(); i++) {
 			if (projectileList.get(i) != null) {
