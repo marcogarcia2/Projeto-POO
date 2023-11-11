@@ -34,10 +34,11 @@ public abstract class Projectile extends Entity{
 		}
 		
 		if (user == gp.player) {
+			
+			// Checa colisão com monstros
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
-			System.out.println(monsterIndex);
 			if(monsterIndex != 999) {
-				System.out.println("AAAAA");
+				System.out.println("Monstro foi alvejado!");
 				// System.out.println("colidiu");
 				
 				// checando se ja é bola ou ainda não
@@ -48,10 +49,15 @@ public abstract class Projectile extends Entity{
 				else if (gp.monsterList[monsterIndex].isBall == true) {
 					gp.monsterList[monsterIndex] = null;
 					gp.projectileList.remove(this);
-			
 				}
-
 			}
+			
+			// Checa colisão com objetos
+			int objIndex = gp.cChecker.checkObject(this, true);
+			if (objIndex != 999) {
+				gp.projectileList.remove(this);
+			}
+			
 			
 			
 			try { // Caso aconteça algum bug e o projetil saia do mapa
