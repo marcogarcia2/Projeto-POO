@@ -20,11 +20,13 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public int hasKey = 0;
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
-	
+	private int timer;
 
 	public boolean canShoot;
 	public int shotDelay;
 	long timeShot;
+	
+	int timerV, timerH;
 	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -49,11 +51,15 @@ public class Player extends Entity {
 		
 		x = 48;
 		y = 48;
-		speed = 2;
+		speed = 3;
 		direction = "down";
 		canShoot = false;
 		shotDelay = 800;
-		hasKey = 10; ///////////////////////////////////////////////////////
+		hasKey = 0;
+		spriteNumH = 1;
+		spriteNumV = 1;
+		timerV = 0;
+		timerH = 0;
 	}
 	
 	public void getPlayerImage() {
@@ -77,20 +83,20 @@ public class Player extends Entity {
 	
 	public void update() {
 		
+		if(keyH.upPressed == true) {
+			direction = "up";
+		}
+		else if(keyH.downPressed == true) {
+			direction = "down";
+		}
+		else if(keyH.leftPressed == true) {
+			direction = "left";
+		}
+		else if(keyH.rightPressed == true) {
+			direction = "right";
+		}
+		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
-			
-			if(keyH.upPressed == true) {
-				direction = "up";
-			}
-			else if(keyH.downPressed == true) {
-				direction = "down";
-			}
-			else if(keyH.leftPressed == true) {
-				direction = "left";
-			}
-			else if(keyH.rightPressed == true) {
-				direction = "right";
-			}
 			
 			//CHECK COLLISION
 			collisionOn = false;
@@ -108,35 +114,36 @@ public class Player extends Entity {
 			if(collisionOn == false) {
 				
 				switch(direction) {
-				case "up":
-					y -= speed;
-					break;
-				case "down":
-					y += speed;
-					break;
-				case "left":
-					x -= speed;
-					break;
-				case "right":
-					x += speed;
-					break;
-				}
 				
+				case "up": y -= speed; break;
+				
+				case "down": y += speed; break;
+				
+				case "left": x -= speed; break;
+				
+				case "right": x += speed; break;
+				
+				}
 			}
-	
 			
-			spriteCounter++;
-			if(spriteCounter > 10) {
-				if(spriteNum == 1) {
-					spriteNum = 2;
-				}
-				else if(spriteNum == 2) {
-					spriteNum = 3;
-				}
-				else if(spriteNum == 3) {
-					spriteNum = 1;
-				}
-				spriteCounter = 0;
+			timerV++;
+			timerH++;
+			
+		
+			
+			  
+			if (timerV < 7) 						spriteNumV = 1;
+			else if (timerV >= 7 && timerV < 14) 	spriteNumV = 2;
+			else if (timerV >= 14 && timerV < 21)		spriteNumV = 3;
+			else if (timerV >= 21 && timerV < 28) 	spriteNumV = 2;
+			else {
+				timerV  = 0;
+			}
+			
+			if (timerH < 7) 						spriteNumH = 1;
+			else if (timerH >= 7 && timerH < 14) 	spriteNumH = 2;
+			else {
+				timerH = 0;
 			}
 			
 			if(hasKey == 6) {
@@ -233,44 +240,50 @@ public class Player extends Entity {
 		//g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 		
 		BufferedImage image = null;
+		
 		switch(direction) {
+		
 		case "up":
-			if(spriteNum == 1) {
-				image = up1;
-			}
-			if(spriteNum == 2) {
+			if(keyH.upPressed == false) {
 				image = up2;
+				timerV = 0;
 			}
-			if(spriteNum == 3) {
-				image = up3;
-			}
+			else if(spriteNumV == 1) image = up1;
+			else if(spriteNumV == 2) image = up2;
+			else if(spriteNumV == 3) image = up3;
+			
 			break;
+			
 		case "down":
-			if(spriteNum == 1) {
-				image = down1;
-			}
-			if(spriteNum == 2) {
+			if(keyH.downPressed == false) {
 				image = down2;
+				timerV = 0;
 			}
-			if(spriteNum == 3) {
-				image = down3;
-			}
+			else if(spriteNumV == 1) image = down1;
+			else if(spriteNumV == 2) image = down2;
+			else if(spriteNumV == 3) image = down3;
+			
 			break;
+			
 		case "left":
-			if(spriteNum == 1 || spriteNum == 3) {
-				image = left1;
-			}
-			if(spriteNum == 2) {
+			if(keyH.leftPressed == false) {
 				image = left2;
+				timerH = 0;
 			}
+			else if(spriteNumH == 1) image = left1;
+			else if(spriteNumH == 2) image = left2;
+			
 			break;
+			
 		case "right":
-			if(spriteNum == 1 || spriteNum == 3) {
-				image = right1;
-			}
-			if(spriteNum == 2) {
+			
+			if(keyH.rightPressed == false) {
 				image = right2;
+				timerH = 0;
 			}
+			else if(spriteNumH == 1) image = right1;
+			else if(spriteNumH == 2) image = right2;
+			
 			break;
 		}
 		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);

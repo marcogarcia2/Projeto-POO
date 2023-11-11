@@ -10,8 +10,6 @@ public abstract class Entity {
 	public String direction;
 	public String name;
 	
-	public int spriteCounter = 0;
-	public int spriteNum = 1;
 	public Rectangle solidArea;
 	
 	public int solidAreaDefaultX, solidAreaDefaultY;
@@ -20,6 +18,8 @@ public abstract class Entity {
 	
 	public Projectile projectile;
 
+	public int spriteNumH, spriteNumV;
+	
 	public abstract void draw(Graphics2D g2);
 	
 	public boolean isBall; // exclusivo da cobrinha
