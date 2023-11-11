@@ -32,7 +32,7 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solidArea = new Rectangle(8,8,32,32);
+		solidArea = new Rectangle(4,4,36,40);
 			/*
 		    solidArea.x = 0;
 			solidArea.y = 0;
@@ -53,6 +53,7 @@ public class Player extends Entity {
 		direction = "down";
 		canShoot = false;
 		shotDelay = 800;
+		hasKey = 10; ///////////////////////////////////////////////////////
 	}
 	
 	public void getPlayerImage() {
@@ -75,7 +76,9 @@ public class Player extends Entity {
 	}
 	
 	public void update() {
+		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
+			
 			if(keyH.upPressed == true) {
 				direction = "up";
 			}
@@ -144,11 +147,12 @@ public class Player extends Entity {
 			}
 		}
 		
-		if (gp.keyH.spacePressed && canShoot) {
+		if (gp.keyH.spacePressed && canShoot && hasKey > 0) {
 			
 			canShoot = false;
+			hasKey--;
 			timeShot = System.currentTimeMillis();
-			projectile = new OBJ_Eggshot(gp);
+			projectile = new OBJ_Eggshot(this.gp);
 			projectile.set(this.x, this.y, this.direction, this);
 			gp.projectileList.add(projectile);
 			
@@ -171,7 +175,7 @@ public class Player extends Entity {
 			
 			switch(objectName) {
 			case "Key":
-				hasKey++;
+				hasKey += 2;
 				gp.obj[i] = null;
 				System.out.println("Keys: " + hasKey);
 				gp.ui.showMessage("You got a key!");

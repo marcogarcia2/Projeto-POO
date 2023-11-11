@@ -13,6 +13,7 @@ public abstract class Entity {
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
 	public Rectangle solidArea;
+	
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	
 	public boolean collisionOn = false;
@@ -21,5 +22,13 @@ public abstract class Entity {
 
 	public abstract void draw(Graphics2D g2);
 	
+	public boolean isBall; // exclusivo da cobrinha
+
+	//public void update() {
+		// TODO Auto-generated method stub
+		
+	//}
+	
 	//public abstract void draw(Graphics2D g2);
+	//public abstract void update();
 }

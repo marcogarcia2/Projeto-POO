@@ -15,6 +15,7 @@ public class OBJ_Eggshot extends Projectile{
 	public BufferedImage image, vertical, horizontal;
 	
 	public OBJ_Eggshot(GamePanel gp){
+		
 		super(gp);
 		this.gp = gp;
 		

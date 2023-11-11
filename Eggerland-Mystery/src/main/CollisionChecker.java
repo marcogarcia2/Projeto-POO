@@ -138,63 +138,106 @@ public class CollisionChecker {
 		return index;
 	}
 	
+	/*
+	 * public int checkEntity(Entity entity, Entity[] target) {
+	 * 
+	 * int index = 999;//Representa o numero do objeto no vetor de objetos
+	 * 
+	 * for(int i = 0; i < target.length; i++) {
+	 * 
+	 * if(target[i] != null) {
+	 * 
+	 * // Get entity's solid area position entity.solidArea.x = entity.x +
+	 * entity.solidArea.x; entity.solidArea.y = entity.y + entity.solidArea.y;
+	 * 
+	 * // Get the object's solid area positiond target[i].solidArea.x = target[i].x
+	 * + target[i].solidArea.x; target[i].solidArea.y = target[i].y +
+	 * target[i].solidArea.y;
+	 * 
+	 * 
+	 * switch(entity.direction) {
+	 * 
+	 * case "up": entity.solidArea.y -= entity.speed;
+	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
+	 * true; } break;
+	 * 
+	 * case "down": entity.solidArea.y += entity.speed;
+	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
+	 * true; } break;
+	 * 
+	 * case "left": entity.solidArea.x -= entity.speed;
+	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
+	 * true; } break;
+	 * 
+	 * case "right": entity.solidArea.x += entity.speed;
+	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
+	 * true; break; }
+	 * 
+	 * }
+	 * 
+	 * entity.solidArea.x = entity.solidAreaDefaultX; entity.solidArea.y =
+	 * entity.solidAreaDefaultY; target[i].solidArea.x =
+	 * target[i].solidAreaDefaultX; target[i].solidArea.y =
+	 * target[i].solidAreaDefaultY; } }
+	 * 
+	 * return index; }
+	 */
+	
 	public int checkEntity(Entity entity, Entity[] target) {
-		
-		int index = 999;//Representa o numero do objeto no vetor de objetos
-		
-		for(int i = 0; i < target.length; i++) {
-			
-			if(target[i] != null) {
-				// Get entity's solid area position
-				entity.solidArea.x = entity.x + entity.solidArea.x + 4;
-				entity.solidArea.y = entity.y + entity.solidArea.y + 4;
-				
-				// Get the object's solid area positiond
-				target[i].solidArea.x = target[i].x + target[i].solidArea.x;
-				target[i].solidArea.y = target[i].y + target[i].solidArea.y;				
+	    int index = 999; // Representa o número do objeto no vetor de objetos
 
-				
-				switch(entity.direction) {
-				
-				case "up":
-					entity.solidArea.y -= entity.speed;
-					if(entity.solidArea.intersects(target[i].solidArea)) {
-							entity.collisionOn = true;
-					}
-					break;
-					
-				case "down":
-					entity.solidArea.y += entity.speed;
-					if(entity.solidArea.intersects(target[i].solidArea)) {
-						entity.collisionOn = true;
-					}
-					break;
-					
-				case "left":
-					entity.solidArea.x -= entity.speed;
-					if(entity.solidArea.intersects(target[i].solidArea)) {
-						entity.collisionOn = true;
-						}
-					
-					break;
-					
-				case "right":
-					entity.solidArea.x += entity.speed;
-					if(entity.solidArea.intersects(target[i].solidArea)) {
-						entity.collisionOn = true;
-					break;
-					}
-				}
-				
-				entity.solidArea.x = entity.solidAreaDefaultX;
-				entity.solidArea.y = entity.solidAreaDefaultY;
-				target[i].solidArea.x = target[i].solidAreaDefaultX;
-				target[i].solidArea.y = target[i].solidAreaDefaultY;
-			} 
-		}
-		
-		return index;
-		
-		
+	    for (int i = 0; i < target.length; i++) {
+	        if (target[i] != null) {
+	            // Get entity's solid area position
+	            entity.solidArea.x = entity.x + entity.solidArea.x;
+	            entity.solidArea.y = entity.y + entity.solidArea.y;
+
+	            // Get the object's solid area position
+	            target[i].solidArea.x = target[i].x + target[i].solidArea.x;
+	            target[i].solidArea.y = target[i].y + target[i].solidArea.y;
+
+	            switch (entity.direction) {
+	                case "up":
+	                    entity.solidArea.y -= entity.speed;
+	                    if (entity.solidArea.intersects(target[i].solidArea)) {
+	                        entity.collisionOn = true;
+	                        index = i; // Atribui o índice ao encontrar uma colisão
+	                    }
+	                    break;
+
+	                case "down":
+	                    entity.solidArea.y += entity.speed;
+	                    if (entity.solidArea.intersects(target[i].solidArea)) {
+	                        entity.collisionOn = true;
+	                        index = i; // Atribui o índice ao encontrar uma colisão
+	                    }
+	                    break;
+
+	                case "left":
+	                    entity.solidArea.x -= entity.speed;
+	                    if (entity.solidArea.intersects(target[i].solidArea)) {
+	                        entity.collisionOn = true;
+	                        index = i; // Atribui o índice ao encontrar uma colisão
+	                    }
+	                    break;
+
+	                case "right":
+	                    entity.solidArea.x += entity.speed;
+	                    if (entity.solidArea.intersects(target[i].solidArea)) {
+	                        entity.collisionOn = true;
+	                        index = i; // Atribui o índice ao encontrar uma colisão
+	                    }
+	                    break;
+	            }
+
+	            entity.solidArea.x = entity.solidAreaDefaultX;
+	            entity.solidArea.y = entity.solidAreaDefaultY;
+	            target[i].solidArea.x = target[i].solidAreaDefaultX;
+	            target[i].solidArea.y = target[i].solidAreaDefaultY;
+	        }
+	    }
+
+	    return index;
 	}
+
 }
