@@ -14,17 +14,18 @@ public class TileManager {
 
 		GamePanel gp;
 		public Tile[] tile;
-		public int mapTileNum[][];
+		public int mapTileNum[][][];
 		
 		public TileManager(GamePanel gp) {
 			
 			this.gp = gp;
 			
 			tile = new Tile[10];
-			mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+			mapTileNum = new int[gp.maxMap][gp.maxScreenCol][gp.maxScreenRow];
 			
 			getTileImage();
-			loadMap("/maps/map1.txt");
+			loadMap("/maps/map1.txt",0);
+			loadMap("/maps/map2.txt",1);
 		}
 		
 		public void getTileImage() {
@@ -62,7 +63,7 @@ public class TileManager {
 			}
 			
 		}
-		public void loadMap(String filePath) {
+		public void loadMap(String filePath, int map) {
 			
 			try {
 				InputStream is = getClass().getResourceAsStream(filePath);
@@ -81,7 +82,7 @@ public class TileManager {
 						
 						int num = Integer.parseInt(numbers[col]);
 						
-						mapTileNum[col][row] = num;
+						mapTileNum[map][col][row] = num;
 						col++;
 					}
 					if(col == gp.maxScreenCol) {
@@ -104,7 +105,7 @@ public class TileManager {
 			
 			while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
 				
-				int tileNum = mapTileNum[col][row];
+				int tileNum = mapTileNum[gp.currentMap][col][row];
 				
 				g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
 				col++;

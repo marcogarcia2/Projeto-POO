@@ -136,11 +136,10 @@ public class Player extends Entity {
 				spriteCounter = 0;
 			}
 			
-			if(hasKey == 6) {
-				gp.obj[2] = new OBJ_Chest();
-				gp.obj[2].worldX = 9 * gp.tileSize;
-				gp.obj[2].worldY = 6 * gp.tileSize;
-				
+			if(hasKey == 6 && gp.currentMap == 0) {
+				gp.obj[gp.currentMap][2] = new OBJ_Chest();
+				gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
+				gp.obj[gp.currentMap][2].worldY = 6 * gp.tileSize;
 			}
 		}
 		
@@ -167,18 +166,18 @@ public class Player extends Entity {
 		
 		if(i != 999) {
 			
-			String objectName = gp.obj[i].name;
+			String objectName = gp.obj[gp.currentMap][i].name;
 			
 			switch(objectName) {
 			case "Key":
 				hasKey++;
-				gp.obj[i] = null;
+				gp.obj[gp.currentMap][i] = null;
 				System.out.println("Keys: " + hasKey);
 				gp.ui.showMessage("You got a key!");
 				break;
 			case "Door":
 				if(hasKey > 0) {
-					gp.obj[i] = null;
+					gp.obj[gp.currentMap][i] = null;
 					hasKey--;
 					gp.ui.showMessage("You opened the door");
 				}
@@ -189,27 +188,29 @@ public class Player extends Entity {
 				break;
 			case "Boots":
 				speed += 2;
-				gp.obj[i] = null;
+				gp.obj[gp.currentMap][i] = null;
 				gp.ui.showMessage("Speed Up!");
 				break;
 			case "Chest":
-				gp.ui.gameFinished = true;
+				gp.currentMap = 1;
+				hasKey = 0;
+				//gp.ui.gameFinished = true;
 				break;
 				
 			//controla a movimentacao do bloco verde
 			case "Bloco":
 				switch(direction) {
 				case "up":
-					gp.obj[i].worldY = gp.obj[i].worldY - gp.tileSize/4;
+					gp.obj[gp.currentMap][i].worldY = gp.obj[gp.currentMap][i].worldY - gp.tileSize/4;
 					break;
 				case "down":
-					gp.obj[i].worldY = gp.obj[i].worldY + gp.tileSize/4;
+					gp.obj[gp.currentMap][i].worldY = gp.obj[gp.currentMap][i].worldY + gp.tileSize/4;
 					break;
 				case "left":
-					gp.obj[i].worldX = gp.obj[i].worldX - gp.tileSize/4;
+					gp.obj[gp.currentMap][i].worldX = gp.obj[gp.currentMap][i].worldX - gp.tileSize/4;
 					break;
 				case "right":
-					gp.obj[i].worldX = gp.obj[i].worldX + gp.tileSize/4;
+					gp.obj[gp.currentMap][i].worldX = gp.obj[gp.currentMap][i].worldX + gp.tileSize/4;
 					break;
 				}
 			}

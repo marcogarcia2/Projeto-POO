@@ -28,6 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenHeight = tileSize * maxScreenRow;
 	
 	
+	public final int maxMap = 10;
+	public int currentMap = 1; //Mostra qual mapa carregar
+	
 	//FPS 
 	int FPS = 60;
 	
@@ -42,9 +45,9 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
-	public SuperObject obj[] = new SuperObject[256]; //SuperObject[] recebe o numero de objetos simultaneos
+	public SuperObject obj[][] = new SuperObject[maxMap][64]; //SuperObject[] recebe o numero de objetos simultaneos
 	//public ArrayList<Entity> monsterList = new ArrayList<>();
-	public Entity[] monsterList = new Entity[10];
+	public Entity[][] monsterList = new Entity[maxMap][10];
 	public ArrayList<Projectile> projectileList = new ArrayList<>();
 	
 	//GAME STATE
@@ -146,15 +149,15 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		//OBJECT
 		for(int i = 0; i < obj.length; i++) {
-			if(obj[i] != null) {
-				obj[i].draw(g2, this);
+			if(obj[currentMap][i] != null) {
+				obj[currentMap][i].draw(g2, this);
 			}
 		}
 		
 		// MONSTERS
 		for (int i = 0; i < monsterList.length; i++) {
-			if (monsterList[i] != null) {
-				monsterList[i].draw(g2);
+			if (monsterList[currentMap][i] != null) {
+				monsterList[currentMap][i].draw(g2);
 			}
 		}
 		
