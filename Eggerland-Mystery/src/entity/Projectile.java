@@ -17,7 +17,6 @@ public abstract class Projectile extends Entity{
 		solidArea = new Rectangle(8,8,32,32);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-		collisionOn = true;
 	}
 	
 	public void set(int x, int y, String direction, Entity user) {
@@ -29,6 +28,10 @@ public abstract class Projectile extends Entity{
 	}
 	
 	public void update() {
+		
+		if (this.collisionOn) {
+			gp.projectileList.remove(this);
+		}
 		
 		if (user == gp.player) {
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
@@ -47,8 +50,15 @@ public abstract class Projectile extends Entity{
 					gp.projectileList.remove(this);
 			
 				}
+
 			}
-			/* gp.cChecker.checkTile(this); */
+			
+			
+			try { // Caso aconteça algum bug e o projetil saia do mapa
+				gp.cChecker.checkTile(this);
+			} catch(ArrayIndexOutOfBoundsException e) {
+				gp.projectileList.remove(this);
+			}	
 		}
 		
 		switch(direction) {

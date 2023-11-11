@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import exception.OutOfBoundsException;
 
 public class CollisionChecker {
 
