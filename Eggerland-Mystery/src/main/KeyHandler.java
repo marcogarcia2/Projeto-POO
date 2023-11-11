@@ -48,6 +48,12 @@ public class KeyHandler implements KeyListener {
 				 gp.gameState = gp.playState;
 			 }
 		}
+		if(code == KeyEvent.VK_R) {
+			switch(gp.currentMap) {
+			case 0: gp.tileM.loadMap("/maps/map1.txt",0); break;
+			case 1: gp.tileM.loadMap("/maps/map2.txt", 1); break;
+			}
+		}
 	}
 
 	@Override
