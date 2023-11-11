@@ -1,8 +1,4 @@
-/main/
-/entity/
-/object/
-/monster/
-/tile/
 /maps/
-/OutOfBoundsException/
-/exception/
+/main/
+/tile/
+/entity/

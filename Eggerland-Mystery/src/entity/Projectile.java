@@ -42,12 +42,12 @@ public abstract class Projectile extends Entity{
 				// System.out.println("colidiu");
 				
 				// checando se ja é bola ou ainda não
-				if (gp.monsterList[monsterIndex].isBall == false) {
-					gp.monsterList[monsterIndex].isBall = true;
+				if (gp.monsterList[gp.currentMap][monsterIndex].isBall == false) {
+					gp.monsterList[gp.currentMap][monsterIndex].isBall = true;
 					gp.projectileList.remove(this);
 				}
-				else if (gp.monsterList[monsterIndex].isBall == true) {
-					gp.monsterList[monsterIndex] = null;
+				else if (gp.monsterList[gp.currentMap][monsterIndex].isBall == true) {
+					gp.monsterList[gp.currentMap][monsterIndex] = null;
 					gp.projectileList.remove(this);
 				}
 			}
