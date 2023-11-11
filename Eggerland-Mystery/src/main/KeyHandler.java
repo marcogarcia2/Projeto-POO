@@ -54,6 +54,16 @@ public class KeyHandler implements KeyListener {
 			case 1: gp.tileM.loadMap("/maps/map2.txt", 1); break;
 			}
 		}	
+		if(code == KeyEvent.VK_O) {
+			//Salva o nivel atual 
+			MapFileManager.writeCurrentMap(gp.currentMap);
+		}
+		if(code == KeyEvent.VK_I) {
+			//Reinicia o arquivo de Save
+			MapFileManager.writeCurrentMap(0);
+			MapFileManager.readCurrentMap();
+		
+		}	
 	}
 
 	@Override

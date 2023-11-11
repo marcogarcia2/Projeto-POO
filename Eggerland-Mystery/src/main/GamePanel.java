@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//MAPAS
 	public final int maxMap = 10;
-	public int currentMap = 0;
+	public int currentMap;
 	
 	//FPS 
 	int FPS = 60;
@@ -67,6 +67,8 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+		
+		currentMap = MapFileManager.readCurrentMap();
 	}
 	
 	public void setupGame() {

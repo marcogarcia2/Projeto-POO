@@ -31,10 +31,6 @@ public class AssetSetter {
 		gp.obj[mapNum][3].worldX = 3 * gp.tileSize; 
 		gp.obj[mapNum][3].worldY = 7 * gp.tileSize;
 		
-		gp.obj[mapNum][4] = new OBJ_Boots();
-		gp.obj[mapNum][4].worldX = 11 * gp.tileSize;
-		gp.obj[mapNum][4].worldY = 6 * gp.tileSize;
-		
 		gp.obj[mapNum][5] = new OBJ_Key();
 		gp.obj[mapNum][5].worldX = 7 * gp.tileSize;
 		gp.obj[mapNum][5].worldY = 7 * gp.tileSize;
@@ -91,6 +87,11 @@ public class AssetSetter {
 		gp.obj[mapNum][0] = new OBJ_Key();
 		gp.obj[mapNum][0].worldX = 6 * gp.tileSize;
 		gp.obj[mapNum][0].worldY = 6 * gp.tileSize;
+		
+		gp.obj[mapNum][1] = new OBJ_Bloco();
+		gp.obj[mapNum][1].worldX = 10 * gp.tileSize;
+		gp.obj[mapNum][1].worldY = 10 * gp.tileSize;
+		
 		
 		mapNum = 3;
 		

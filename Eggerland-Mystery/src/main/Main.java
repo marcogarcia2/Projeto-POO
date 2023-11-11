@@ -14,6 +14,8 @@ public class Main {
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
 		
+		System.out.println(MapFileManager.readCurrentMap());
+		
 		window.pack();
 		
 		window.setLocationRelativeTo(null);

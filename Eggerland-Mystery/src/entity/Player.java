@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.MapFileManager;
 import object.OBJ_Chest;
 import object.OBJ_Eggshot;
 
@@ -46,11 +47,27 @@ public class Player extends Entity {
 		
 		setDefaultValues();
 		getPlayerImage();
+		
+		
+		
+		
 	}
 	public void setDefaultValues() {
+		/*
+		 switch(gp.currentMap) {
+		case 0: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
+		case 1: x = 9*gp.tileSize; y = 9*gp.tileSize; break;
+		case 2: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
+		case 3: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
+		 */
+		switch(MapFileManager.readCurrentMap()) {
+			//posiciona o boneco de acordo com o nivel;
+		case 0:	x = 48;y = 48;break;
+		case 1:	x = 9*48;y = 3*48;break;
+		case 2:	x = 2*48;y = 2*48;break;
+		case 3:	x = 6*48;y = 3*48;break;
+		}
 		
-		x = 48;
-		y = 48;
 		speed = 3;
 		direction = "down";
 		canShoot = false;
@@ -82,6 +99,7 @@ public class Player extends Entity {
 	}
 	
 	public void update() {
+		
 		
 		if(keyH.upPressed == true) {
 			direction = "up";
