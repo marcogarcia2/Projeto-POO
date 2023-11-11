@@ -32,8 +32,8 @@ public class MonsterSetter {
 		
 		
 		gp.monsterList[mapNum][1] = new Caveira(gp);
-		gp.monsterList[mapNum][1].x = 3 * gp.tileSize;
-		gp.monsterList[mapNum][1].y = 1 * gp.tileSize;
+		gp.monsterList[mapNum][1].x = 5 * gp.tileSize;
+		gp.monsterList[mapNum][1].y = 6 * gp.tileSize;
 			
 	}
 }

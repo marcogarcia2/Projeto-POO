@@ -149,7 +149,7 @@ public class Player extends Entity {
 			switch(gp.currentMap) {
 			
 			case 0:
-				if(hasKey == 6) {
+				if(hasKey >= 6) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
@@ -158,11 +158,31 @@ public class Player extends Entity {
 				}
 				break;
 			case 1:
-				if(hasKey == 5) {
+				if(hasKey >= 5) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
-					gp.obj[gp.currentMap][2].worldY = 6 * gp.tileSize;
+					gp.obj[gp.currentMap][2].worldY = 9 * gp.tileSize;
+					
+				}
+				break;
+				
+			case 2:
+				if(hasKey >= 1) {
+					
+					gp.obj[gp.currentMap][2] = new OBJ_Chest();
+					gp.obj[gp.currentMap][2].worldX = 10 * gp.tileSize;
+					gp.obj[gp.currentMap][2].worldY = 10 * gp.tileSize;
+					
+				}
+				break;
+				
+			case 3:
+				if(hasKey >= 3) {
+					
+					gp.obj[gp.currentMap][2] = new OBJ_Chest();
+					gp.obj[gp.currentMap][2].worldX = 6 * gp.tileSize;
+					gp.obj[gp.currentMap][2].worldY = 10 * gp.tileSize;
 					
 				}
 				break;

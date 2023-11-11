@@ -60,9 +60,51 @@ public class AssetSetter {
 		gp.obj[mapNum][10].worldY = 6 * gp.tileSize;
 		
 	    mapNum = 1;
-	    
+	   
+	    gp.obj[mapNum][0] = new OBJ_Key();
+		gp.obj[mapNum][0].worldX = 3 * gp.tileSize;
+		gp.obj[mapNum][0].worldY = 1 * gp.tileSize;
+		
+		gp.obj[mapNum][1] = new OBJ_Key();
+		gp.obj[mapNum][1].worldX = 3 * gp.tileSize;
+		gp.obj[mapNum][1].worldY = 10 * gp.tileSize;
+		
+		gp.obj[mapNum][2] = new OBJ_Key();
+		gp.obj[mapNum][2].worldX = 5 * gp.tileSize;
+		gp.obj[mapNum][2].worldY = 7 * gp.tileSize;
+		
+		gp.obj[mapNum][3] = new OBJ_Key();
+		gp.obj[mapNum][3].worldX = 7 * gp.tileSize;
+		gp.obj[mapNum][3].worldY = 11 * gp.tileSize;
+		
+		gp.obj[mapNum][4] = new OBJ_Key();
+		gp.obj[mapNum][4].worldX = 7 * gp.tileSize;
+		gp.obj[mapNum][4].worldY = 1 * gp.tileSize;
+		
+		
 	    gp.obj[mapNum][9] = new OBJ_Bloco();
 		gp.obj[mapNum][9].worldX = 3 * gp.tileSize;
-		gp.obj[mapNum][9].worldY = 7 * gp.tileSize;
+		gp.obj[mapNum][9].worldY = 9 * gp.tileSize;
+		
+		mapNum = 2;
+		
+		gp.obj[mapNum][0] = new OBJ_Key();
+		gp.obj[mapNum][0].worldX = 6 * gp.tileSize;
+		gp.obj[mapNum][0].worldY = 6 * gp.tileSize;
+		
+		mapNum = 3;
+		
+		gp.obj[mapNum][0] = new OBJ_Key();
+		gp.obj[mapNum][0].worldX = 6 * gp.tileSize;
+		gp.obj[mapNum][0].worldY = 7 * gp.tileSize;
+		
+		gp.obj[mapNum][1] = new OBJ_Key();
+		gp.obj[mapNum][1].worldX = 8 * gp.tileSize;
+		gp.obj[mapNum][1].worldY = 3 * gp.tileSize;
+		
+		gp.obj[mapNum][2] = new OBJ_Key();
+		gp.obj[mapNum][2].worldX = 4 * gp.tileSize;
+		gp.obj[mapNum][2].worldY = 3 * gp.tileSize;
+		
 	}
 }
