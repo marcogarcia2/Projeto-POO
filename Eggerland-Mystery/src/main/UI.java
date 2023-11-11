@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 
+import object.OBJ_Eggshot;
 import object.OBJ_Key;
 
 public class UI {
@@ -17,6 +18,7 @@ public class UI {
 	Font arial_40, arial_80B, arial_20;
 	BufferedImage keyImage;
 	BufferedImage loloImage;
+	BufferedImage shotImage;
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -32,7 +34,10 @@ public class UI {
 		arial_80B = new Font("Arial", Font.BOLD, 80);
 		arial_20 = new Font("Arial", Font.PLAIN, 20);
 		OBJ_Key key = new OBJ_Key();
+		OBJ_Eggshot egg = new OBJ_Eggshot(gp);
 		keyImage = key.image;
+		shotImage = egg.horizontal;
+				
 	}
 	
 	public void showMessage(String text) {
@@ -91,8 +96,8 @@ public class UI {
 			g2.setFont(arial_40);
 			g2.setColor(Color.white);
 			g2.drawImage(loloImage, 13*gp.tileSize, 3*gp.tileSize, gp.tileSize, gp.tileSize, null);
-			g2.drawImage(keyImage, 13*gp.tileSize, 4*gp.tileSize, gp.tileSize, gp.tileSize, null);
-			g2.drawString(" " + gp.player.hasKey, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
+			g2.drawImage(shotImage, 13*gp.tileSize, 4*gp.tileSize, gp.tileSize, gp.tileSize, null);
+			g2.drawString(" " + gp.player.shotCount, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
 			
 			// TIME
 			playTime += (double)1/60;

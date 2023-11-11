@@ -19,7 +19,8 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	KeyHandler keyH;
-	public int hasKey = 0;
+	public int shotCount;
+	public int keyCount;
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
 	private int timer;
 
@@ -72,7 +73,8 @@ public class Player extends Entity {
 		direction = "down";
 		canShoot = false;
 		shotDelay = 800;
-		hasKey = 0;
+		shotCount = 0;
+		keyCount = 0;
 		spriteNumH = 1;
 		spriteNumV = 1;
 		timerV = 0;
@@ -167,7 +169,7 @@ public class Player extends Entity {
 			switch(gp.currentMap) {
 			
 			case 0:
-				if(hasKey >= 6) {
+				if(keyCount >= 6) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
@@ -176,7 +178,7 @@ public class Player extends Entity {
 				}
 				break;
 			case 1:
-				if(hasKey >= 5) {
+				if(keyCount >= 5) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
@@ -186,7 +188,7 @@ public class Player extends Entity {
 				break;
 				
 			case 2:
-				if(hasKey >= 1) {
+				if(keyCount >= 1) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 10 * gp.tileSize;
@@ -196,7 +198,7 @@ public class Player extends Entity {
 				break;
 				
 			case 3:
-				if(hasKey >= 3) {
+				if(keyCount >= 3) {
 					
 					gp.obj[gp.currentMap][2] = new OBJ_Chest();
 					gp.obj[gp.currentMap][2].worldX = 6 * gp.tileSize;
@@ -208,10 +210,10 @@ public class Player extends Entity {
 			}
 		}
 		
-		if (gp.keyH.spacePressed && canShoot && hasKey > 0) {
+		if (gp.keyH.spacePressed && canShoot && shotCount > 0) {
 			
 			canShoot = false;
-			hasKey--;
+			shotCount--;
 			timeShot = System.currentTimeMillis();
 			projectile = new OBJ_Eggshot(this.gp);
 			projectile.set(this.x, this.y, this.direction, this);
@@ -236,21 +238,22 @@ public class Player extends Entity {
 			
 			switch(objectName) {
 			case "Key":
-				hasKey += 2;
+				shotCount += 2;
+				keyCount += 1;
 				gp.obj[gp.currentMap][i] = null;
-				System.out.println("Keys: " + hasKey);
+				System.out.println("Keys: " + shotCount);
 				gp.ui.showMessage("You got a key!");
 				break;
 			case "Door":
-				if(hasKey > 0) {
+				if(shotCount > 0) {
 					gp.obj[gp.currentMap][i] = null;
-					hasKey--;
+					shotCount--;
 					gp.ui.showMessage("You opened the door");
 				}
 				else {
 					gp.ui.showMessage("You need a key!");
 				}
-				System.out.println("Keys: " + hasKey);
+				System.out.println("Keys: " + shotCount);
 				break;
 			case "Boots":
 				speed += 2;
@@ -259,7 +262,7 @@ public class Player extends Entity {
 				break;
 			case "Chest":
 				if(gp.currentMap < 3) {
-				hasKey = 0;
+				keyCount = 0;
 				gp.currentMap ++;
 				}
 				else {
