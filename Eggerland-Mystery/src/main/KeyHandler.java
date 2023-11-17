@@ -48,21 +48,21 @@ public class KeyHandler implements KeyListener {
 				 gp.gameState = gp.playState;
 			 }
 		}
-		if(code == KeyEvent.VK_R) {
-			switch(gp.currentMap) {
+		if(code == KeyEvent.VK_R) { // Reseta o Personagem no Nivel
+			gp.resetGame();
+			/*switch(gp.currentMap) {
 			case 0: gp.tileM.loadMap("/maps/map1.txt", 0); break;
 			case 1: gp.tileM.loadMap("/maps/map2.txt", 1); break;
-			}
+			}*/
 		}	
-		if(code == KeyEvent.VK_O) {
+		if(code == KeyEvent.VK_O) { //Salva o nivel atual
 			//Salva o nivel atual 
 			MapFileManager.writeCurrentMap(gp.currentMap);
 		}
-		if(code == KeyEvent.VK_I) {
+		if(code == KeyEvent.VK_I) { //Define o nivel atual como 0 
 			//Reinicia o arquivo de Save
 			MapFileManager.writeCurrentMap(0);
-			MapFileManager.readCurrentMap();
-		
+			gp.resetGame();
 		}	
 	}
 
