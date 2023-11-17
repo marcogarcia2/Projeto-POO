@@ -20,9 +20,11 @@ public abstract class Entity {
 
 	public int spriteNumH, spriteNumV;
 	
+	public abstract void update();
 	public abstract void draw(Graphics2D g2);
 	
 	public boolean isBall; // exclusivo da cobrinha
+	public boolean awake;
 
 	//public void update() {
 		// TODO Auto-generated method stub

@@ -58,13 +58,39 @@ public abstract class Projectile extends Entity{
 				gp.projectileList.remove(this);
 			}
 			
-			
-			
 			try { // Caso aconteça algum bug e o projetil saia do mapa
 				gp.cChecker.checkTile(this);
 			} catch(ArrayIndexOutOfBoundsException e) {
 				gp.projectileList.remove(this);
 			}	
+		}
+		
+		else { // user != player
+				
+			// checa colisão com o player
+			
+			try { 
+				if (gp.cChecker.checkPlayer(this, gp.player)) { // MATAR O JOGADOR,
+					//REINICIAR A FASE
+					gp.projectileList.remove(this); 		  
+				} 
+			} catch(ArrayIndexOutOfBoundsException e) {
+				gp.projectileList.remove(this); 
+			}
+			
+			// Checa colisão com objetos (caixas)
+			int objIndex = gp.cChecker.checkObject(this, true); if (objIndex != 999) {
+				  gp.projectileList.remove(this); 
+			}
+			 
+			
+			// Caso aconteça algum bug e o projetil saia do mapa
+			try { 
+				gp.cChecker.checkTile(this);
+			} catch(ArrayIndexOutOfBoundsException e) {
+				gp.projectileList.remove(this);
+			}
+			
 		}
 		
 		switch(direction) {

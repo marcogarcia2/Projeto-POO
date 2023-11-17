@@ -2,6 +2,8 @@ package main;
 
 import entity.Caveira;
 import entity.Cobrinha;
+import entity.Dino;
+import entity.Medusa;
 
 public class MonsterSetter {
 	
@@ -38,6 +40,35 @@ public class MonsterSetter {
 		gp.monsterList[mapNum][2] = new Caveira(gp);
 		gp.monsterList[mapNum][2].x = 7 * gp.tileSize;
 		gp.monsterList[mapNum][2].y = 6 * gp.tileSize;
+		
+		
+		mapNum = 2;
+		
+		gp.monsterList[mapNum][1] = new Dino(gp, "up");
+		gp.monsterList[mapNum][1].x = 4 * gp.tileSize;
+		gp.monsterList[mapNum][1].y = 8 * gp.tileSize;
+		
+		gp.monsterList[mapNum][2] = new Dino(gp, "left");
+		gp.monsterList[mapNum][2].x = 8 * gp.tileSize;
+		gp.monsterList[mapNum][2].y = 8 * gp.tileSize;
+		
+		gp.monsterList[mapNum][3] = new Dino(gp, "down");
+		gp.monsterList[mapNum][3].x = 8 * gp.tileSize;
+		gp.monsterList[mapNum][3].y = 4 * gp.tileSize;
+		
+		gp.monsterList[mapNum][4] = new Dino(gp, "right");
+		gp.monsterList[mapNum][4].x = 4 * gp.tileSize;
+		gp.monsterList[mapNum][4].y = 4 * gp.tileSize;
+		
+		mapNum = 3;
+		
+		gp.monsterList[mapNum][1] = new Medusa(gp);
+		gp.monsterList[mapNum][1].x = 4 * gp.tileSize;
+		gp.monsterList[mapNum][1].y = 7 * gp.tileSize;
+		
+		gp.monsterList[mapNum][2] = new Medusa(gp);
+		gp.monsterList[mapNum][2].x = 8 * gp.tileSize;
+		gp.monsterList[mapNum][2].y = 7 * gp.tileSize;
 			
 	}
 }

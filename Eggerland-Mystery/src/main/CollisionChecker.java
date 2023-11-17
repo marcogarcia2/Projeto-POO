@@ -139,55 +139,11 @@ public class CollisionChecker {
 		return index;
 	}
 	
-	/*
-	 * public int checkEntity(Entity entity, Entity[] target) {
-	 * 
-	 * int index = 999;//Representa o numero do objeto no vetor de objetos
-	 * 
-	 * for(int i = 0; i < target.length; i++) {
-	 * 
-	 * if(target[i] != null) {
-	 * 
-	 * // Get entity's solid area position entity.solidArea.x = entity.x +
-	 * entity.solidArea.x; entity.solidArea.y = entity.y + entity.solidArea.y;
-	 * 
-	 * // Get the object's solid area positiond target[i].solidArea.x = target[i].x
-	 * + target[i].solidArea.x; target[i].solidArea.y = target[i].y +
-	 * target[i].solidArea.y;
-	 * 
-	 * 
-	 * switch(entity.direction) {
-	 * 
-	 * case "up": entity.solidArea.y -= entity.speed;
-	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
-	 * true; } break;
-	 * 
-	 * case "down": entity.solidArea.y += entity.speed;
-	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
-	 * true; } break;
-	 * 
-	 * case "left": entity.solidArea.x -= entity.speed;
-	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
-	 * true; } break;
-	 * 
-	 * case "right": entity.solidArea.x += entity.speed;
-	 * if(entity.solidArea.intersects(target[i].solidArea)) { entity.collisionOn =
-	 * true; break; }
-	 * 
-	 * }
-	 * 
-	 * entity.solidArea.x = entity.solidAreaDefaultX; entity.solidArea.y =
-	 * entity.solidAreaDefaultY; target[i].solidArea.x =
-	 * target[i].solidAreaDefaultX; target[i].solidArea.y =
-	 * target[i].solidAreaDefaultY; } }
-	 * 
-	 * return index; }
-	 */
 	
 	public int checkEntity(Entity entity, Entity[][] target) {
 	    int index = 999; // Representa o número do objeto no vetor de objetos
 
-	    for (int i = 0; i < target[1].length; i++) {
+	    for (int i = 0; i < target[gp.currentMap].length; i++) {
 	        if (target[gp.currentMap][i] != null) {
 	            // Get entity's solid area position
 	            entity.solidArea.x = entity.x + entity.solidArea.x;
@@ -240,5 +196,27 @@ public class CollisionChecker {
 
 	    return index;
 	}
+	
+	public boolean checkPlayer(Entity monster, Entity player) {
+	    
+	    // Get monster or projectile's solid area position
+	    monster.solidArea.x = monster.x + monster.solidArea.x;
+	    monster.solidArea.y = monster.y + monster.solidArea.y;
 
+        // Get the player's solid area position
+        player.solidArea.x = player.x + player.solidArea.width;
+        player.solidArea.y = player.y + player.solidArea.height;
+        System.out.println("x = " + player.solidArea.x);
+        System.out.println("y = " + player.solidArea.y);
+        System.out.println("--------------");
+        
+        
+        if (monster.solidArea.intersects(player.solidArea)) { 
+        	monster.collisionOn = true;
+        	System.out.println("Acertou o player");
+            return true;
+        }
+        
+        return false;
+	}
 }

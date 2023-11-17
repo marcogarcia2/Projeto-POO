@@ -127,19 +127,20 @@ public class GamePanel extends JPanel implements Runnable {
 			// nada
 		}
 		
-		
-		for (int i = 0; i < projectileList.size(); i++) {
-			if (projectileList.get(i) != null) {
-				if(projectileList.get(i).timer <= 150) { // depois de 2.5 segundos o tiro some
-					projectileList.get(i).update();
-				}
-				else {
-					projectileList.remove(i);
-				}
+		for (int i = 0; i < monsterList.length; i++) {
+			if (monsterList[currentMap][i] != null) {
+				monsterList[currentMap][i].update(); 
 			}
 		}
 		
+		
+		for (int i = 0; i < projectileList.size(); i++) {
+			if (projectileList.get(i) != null) {
+				projectileList.get(i).update();
+			}
+		}
 	}
+	
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);

@@ -78,4 +78,10 @@ public class Cobrinha extends Entity{
 		
 		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 }

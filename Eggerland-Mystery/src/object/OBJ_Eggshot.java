@@ -12,7 +12,7 @@ import main.GamePanel;
 public class OBJ_Eggshot extends Projectile{
 
 	GamePanel gp;
-	public BufferedImage image, vertical, horizontal;
+	public BufferedImage vertical, horizontal;
 	
 	public OBJ_Eggshot(GamePanel gp){
 		
@@ -38,16 +38,15 @@ public class OBJ_Eggshot extends Projectile{
 	}
 	
 	public void draw(Graphics2D g2) {
+		BufferedImage image = null;
 		
-		if (this.direction == "up" || this.direction == "down") {
-			image = vertical;
-		}
-		else if (this.direction == "left" || this.direction == "right") {
-			image = horizontal;
+		switch(direction) {
+			case "up": image = vertical; break;
+			case "down": image = vertical; break;
+			case "left": image = horizontal; break;
+			case "right": image = horizontal; break;
 		}
 		
 		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-		
-		
 	}
 }

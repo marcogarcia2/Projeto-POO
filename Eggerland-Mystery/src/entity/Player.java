@@ -22,7 +22,6 @@ public class Player extends Entity {
 	public int shotCount;
 	public int keyCount;
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
-	private int timer;
 
 	public boolean canShoot;
 	public int shotDelay;
@@ -36,7 +35,7 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solidArea = new Rectangle(4,4,36,40);
+		solidArea = new Rectangle(4,4,40,42);
 			/*
 		    solidArea.x = 0;
 			solidArea.y = 0;
@@ -47,11 +46,7 @@ public class Player extends Entity {
 		solidAreaDefaultY = solidArea.y;
 		
 		setDefaultValues();
-		getPlayerImage();
-		
-		
-		
-		
+		getPlayerImage();		
 	}
 	public void setDefaultValues() {
 		/*
@@ -61,18 +56,19 @@ public class Player extends Entity {
 		case 2: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
 		case 3: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
 		 */
+		
 		switch(MapFileManager.readCurrentMap()) {
-			//posiciona o boneco de acordo com o nivel;
-		case 0:	x = 48;y = 48;break;
-		case 1:	x = 9*48;y = 3*48;break;
-		case 2:	x = 2*48;y = 2*48;break;
-		case 3:	x = 6*48;y = 3*48;break;
+		//posiciona o boneco de acordo com o nivel;
+		case 0:	x = gp.tileSize; y = gp.tileSize; break;
+		case 1:	x = 9 * gp.tileSize; y = 3 * gp.tileSize; break;
+		case 2:	x = 2 * gp.tileSize; y = 2 * gp.tileSize; break;
+		case 3:	x = 6 * gp.tileSize; y = 3 * gp.tileSize; break;
 		}
 		
 		speed = 3;
 		direction = "down";
 		canShoot = false;
-		shotDelay = 800;
+		shotDelay = 400;
 		shotCount = 0;
 		keyCount = 0;
 		spriteNumH = 1;
@@ -102,7 +98,6 @@ public class Player extends Entity {
 	
 	public void update() {
 		
-		
 		if(keyH.upPressed == true) {
 			direction = "up";
 		}
@@ -120,15 +115,18 @@ public class Player extends Entity {
 			
 			//CHECK COLLISION
 			collisionOn = false;
-			gp.cChecker.checkTile(this);
-			
+			try {
+				gp.cChecker.checkTile(this);
+			} catch(ArrayIndexOutOfBoundsException e) {
+				
+			}
 			//CHECK OBJECT COLLISION
 			int objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
 			
 			//CHECK MONSTER COLLISION
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
-			interactMonster(monsterIndex);
+			//interactMonster(monsterIndex);
 			
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false) {
@@ -148,13 +146,10 @@ public class Player extends Entity {
 			
 			timerV++;
 			timerH++;
-			
-		
-			
-			  
+						  
 			if (timerV < 7) 						spriteNumV = 1;
 			else if (timerV >= 7 && timerV < 14) 	spriteNumV = 2;
-			else if (timerV >= 14 && timerV < 21)		spriteNumV = 3;
+			else if (timerV >= 14 && timerV < 21)	spriteNumV = 3;
 			else if (timerV >= 21 && timerV < 28) 	spriteNumV = 2;
 			else {
 				timerV  = 0;
@@ -238,7 +233,8 @@ public class Player extends Entity {
 			
 			switch(objectName) {
 			case "Key":
-				shotCount += 2;
+				
+				if(gp.currentMap == 0) shotCount += 2;
 				keyCount += 1;
 				gp.obj[gp.currentMap][i] = null;
 				System.out.println("Keys: " + shotCount);
@@ -263,7 +259,7 @@ public class Player extends Entity {
 			case "Chest":
 				if(gp.currentMap < 3) {
 				keyCount = 0;
-				gp.currentMap ++;
+				gp.currentMap++;
 				}
 				else {
 					gp.ui.gameFinished = true;
@@ -290,11 +286,10 @@ public class Player extends Entity {
 		}
 	}
 	
-	void interactMonster(int i) {
-		if (i != 999) {
-			System.out.println("You are hitting a monster!");
-		}
-	}
+	/*
+	 * void interactMonster(int i) { if (i != 999) {
+	 * System.out.println("You are hitting a monster!"); } }
+	 */
 	
 	
 	public void draw(Graphics2D g2) {
