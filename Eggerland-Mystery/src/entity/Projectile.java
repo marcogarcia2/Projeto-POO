@@ -15,8 +15,6 @@ public abstract class Projectile extends Entity{
 		this.gp = gp;
 		timer = 0;
 		solidArea = new Rectangle(8,8,32,32);
-		solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
 	}
 	
 	public void set(int x, int y, String direction, Entity user) {
@@ -98,6 +96,7 @@ public abstract class Projectile extends Entity{
 		case "down": y += speed; break;
 		case "left": x -= speed; break;
 		case "right": x += speed; break;
+		default: gp.projectileList.remove(this);
 		}
 		
 		timer++;

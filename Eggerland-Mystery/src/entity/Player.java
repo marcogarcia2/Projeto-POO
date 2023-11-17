@@ -42,8 +42,6 @@ public class Player extends Entity {
 			solidArea.width = gp.tileSize; //Esses valores determinam o hitbox do personagem, 0, 0 e (gp.tileSize) por padrao
 			solidArea.width = gp.tileSize;
 			*/
-		solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
 		
 		setDefaultValues();
 		getPlayerImage();		
