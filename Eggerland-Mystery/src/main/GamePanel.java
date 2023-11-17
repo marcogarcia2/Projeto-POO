@@ -85,6 +85,12 @@ public class GamePanel extends JPanel implements Runnable {
 		gameThread.start();
 	}
 	
+	public void resetGame() {
+		player.setDefaultValues();
+		setupGame();
+		
+	}
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

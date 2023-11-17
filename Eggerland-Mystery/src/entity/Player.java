@@ -260,10 +260,12 @@ public class Player extends Entity {
 				gp.obj[gp.currentMap][i] = null;
 				gp.ui.showMessage("Speed Up!");
 				break;
-			case "Chest":
+			case "Chest": // Porta Final do Nivel
 				if(gp.currentMap < 3) {
 				keyCount = 0;
 				gp.currentMap ++;
+				MapFileManager.writeCurrentMap(gp.currentMap);
+				gp.resetGame();
 				}
 				else {
 					gp.ui.gameFinished = true;
