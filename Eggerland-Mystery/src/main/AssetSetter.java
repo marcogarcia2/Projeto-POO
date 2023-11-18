@@ -124,6 +124,10 @@ public class AssetSetter {
 		gp.obj[mapNum][5] = new OBJ_Bloco(gp);
 		gp.obj[mapNum][5].x = 10 * gp.tileSize;
 		gp.obj[mapNum][5].y = 10 * gp.tileSize;
+	
+		gp.obj[mapNum][2] = new OBJ_Bloco(gp);
+		gp.obj[mapNum][2].x = 10 * gp.tileSize;
+		gp.obj[mapNum][2].y = 10 * gp.tileSize;
 		
 		
 		mapNum = 3;
