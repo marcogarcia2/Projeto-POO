@@ -26,7 +26,7 @@ public class Medusa extends Entity {
 		solidAreaDefaultY = solidArea.y;
 		awake = false;
 		isBall = false;
-		timer = 0;
+		timer = 11;
 		getMedusaImage();
 	}
 	

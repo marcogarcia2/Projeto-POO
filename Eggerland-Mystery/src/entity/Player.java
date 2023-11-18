@@ -34,14 +34,13 @@ public class Player extends Entity {
 		
 		this.gp = gp;
 		this.keyH = keyH;
-		
-		solidArea = new Rectangle(4,4,40,42);
-			/*
-		    solidArea.x = 0;
-			solidArea.y = 0;
-			solidArea.width = gp.tileSize; //Esses valores determinam o hitbox do personagem, 0, 0 e (gp.tileSize) por padrao
-			solidArea.width = gp.tileSize;
-			*/
+
+//		/*
+//		 * solidArea.x = 0; solidArea.y = 0; solidArea.width = gp.tileSize; //Esses
+//		 * valores determinam o hitbox do personagem, 0, 0 e (gp.tileSize) por padrao
+//		 * solidArea.height = gp.tileSize;
+//		 */
+			
 		
 		setDefaultValues();
 		getPlayerImage();		
@@ -63,6 +62,8 @@ public class Player extends Entity {
 		case 3:	x = 6 * gp.tileSize; y = 3 * gp.tileSize; break;
 		}
 		
+
+		solidArea = new Rectangle(4,4,40,42);
 		speed = 3;
 		direction = "down";
 		canShoot = false;
@@ -96,6 +97,9 @@ public class Player extends Entity {
 	
 	public void update() {
 		
+		//solidArea.x = x;
+		//solidArea.y = y;
+		
 		if(keyH.upPressed == true) {
 			direction = "up";
 		}
@@ -109,22 +113,22 @@ public class Player extends Entity {
 			direction = "right";
 		}
 		
+		//CHECK COLLISION
+		collisionOn = false;
+		try {
+			gp.cChecker.checkTile(this);
+		} catch(ArrayIndexOutOfBoundsException e) {
+			
+		}
+		//CHECK OBJECT COLLISION
+		int objIndex = gp.cChecker.checkObject(this, true);
+		pickUpObject(objIndex);
+		
+		//CHECK MONSTER COLLISION
+		int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
+		//interactMonster(monsterIndex);
+		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
-			
-			//CHECK COLLISION
-			collisionOn = false;
-			try {
-				gp.cChecker.checkTile(this);
-			} catch(ArrayIndexOutOfBoundsException e) {
-				
-			}
-			//CHECK OBJECT COLLISION
-			int objIndex = gp.cChecker.checkObject(this, true);
-			pickUpObject(objIndex);
-			
-			//CHECK MONSTER COLLISION
-			int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
-			//interactMonster(monsterIndex);
 			
 			//IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if(collisionOn == false) {

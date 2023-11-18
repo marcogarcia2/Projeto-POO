@@ -14,7 +14,7 @@ public abstract class Projectile extends Entity{
 	public Projectile (GamePanel gp) {
 		this.gp = gp;
 		timer = 0;
-		solidArea = new Rectangle(8,8,32,32);
+		solidArea = new Rectangle(2,2,44,44);
 	}
 	
 	public void set(int x, int y, String direction, Entity user) {
@@ -69,8 +69,8 @@ public abstract class Projectile extends Entity{
 			
 			try { 
 				if (gp.cChecker.checkPlayer(this, gp.player)) { // MATAR O JOGADOR,
-					//REINICIAR A FASE
 					gp.projectileList.remove(this); 		  
+					gp.resetGame();
 				} 
 			} catch(ArrayIndexOutOfBoundsException e) {
 				gp.projectileList.remove(this); 

@@ -71,7 +71,7 @@ public class CollisionChecker {
 		
 		int index = 999;//Representa o numero do objeto no vetor de objetos
 		
-		for(int i = 0; i < gp.obj[1].length; i++) {
+		for(int i = 0; i < gp.obj[gp.currentMap].length; i++) {
 			
 			if(gp.obj[gp.currentMap][i] != null) {
 				// Get entity's solid area position
@@ -206,10 +206,6 @@ public class CollisionChecker {
         // Get the player's solid area position
         player.solidArea.x = player.x + player.solidArea.width;
         player.solidArea.y = player.y + player.solidArea.height;
-        System.out.println("x = " + player.solidArea.x);
-        System.out.println("y = " + player.solidArea.y);
-        System.out.println("--------------");
-        
         
         if (monster.solidArea.intersects(player.solidArea)) { 
         	monster.collisionOn = true;

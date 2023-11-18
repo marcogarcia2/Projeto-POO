@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import entity.Projectile;
 import main.GamePanel;
 
 public class OBJ_Bullet extends Projectile{
-	///////// AUMENTAR A AREA DO PROJETIL /////////////
+	
 	GamePanel gp;
 	public BufferedImage vertical, horizontal;
 	
