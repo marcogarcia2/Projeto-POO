@@ -20,7 +20,7 @@ public class Dino extends Entity {
 		
 		this.gp = gp;
 		this.direction = direction;
-		this.solidArea = new Rectangle(4,4,40,40);
+		//this.solidArea = new Rectangle(4,4,40,40);
 		awake = false;
 		isBall = false;
 		timer = 0;

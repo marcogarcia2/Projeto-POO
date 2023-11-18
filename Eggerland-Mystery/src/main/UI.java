@@ -33,7 +33,7 @@ public class UI {
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
 		arial_80B = new Font("Arial", Font.BOLD, 80);
 		arial_20 = new Font("Arial", Font.PLAIN, 20);
-		OBJ_Key key = new OBJ_Key();
+		OBJ_Key key = new OBJ_Key(gp);
 		OBJ_Eggshot egg = new OBJ_Eggshot(gp);
 		keyImage = key.image;
 		shotImage = egg.horizontal;

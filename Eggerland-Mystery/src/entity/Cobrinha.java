@@ -20,7 +20,7 @@ public class Cobrinha extends Entity{
 		this.gp = gp;
 		this.direction = "down";
 		
-		this.solidArea = new Rectangle(4,4,40,40);
+		//this.solidArea = new Rectangle(4,4,40,40);
 		//solidAreaDefaultX = solidArea.x;
 		//solidAreaDefaultY = solidArea.y;
 		

@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import entity.Entity;
 import entity.Player;
 import entity.Projectile;
-import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -35,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 	int FPS = 60;
 	
 	//SYSTEM
-	TileManager tileM = new TileManager(this);
+	public TileManager tileM = new TileManager(this);
 	public KeyHandler keyH = new KeyHandler(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
@@ -45,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
-	public SuperObject obj[][] = new SuperObject[maxMap][256]; //SuperObject[] recebe o numero de objetos simultaneos
+	public Entity obj[][] = new Entity[maxMap][25]; //SuperObject[] recebe o numero de objetos simultaneos
 	//public ArrayList<Entity> monsterList = new ArrayList<>();
 	public Entity[][] monsterList = new Entity[maxMap][10];
 	public ArrayList<Projectile> projectileList = new ArrayList<>();
@@ -133,9 +132,15 @@ public class GamePanel extends JPanel implements Runnable {
 			// nada
 		}
 		
-		for (int i = 0; i < monsterList.length; i++) {
+		for (int i = 0; i < monsterList[currentMap].length; i++) {
 			if (monsterList[currentMap][i] != null) {
 				monsterList[currentMap][i].update(); 
+			}
+		}
+		
+		for (int i = 0; i < obj[currentMap].length; i++) {
+			if (obj[currentMap][i] != null) {
+				obj[currentMap][i].update();
 			}
 		}
 		
@@ -159,7 +164,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//OBJECT
 		for(int i = 0; i < obj[1].length; i++) {
 			if(obj[currentMap][i] != null) {
-				obj[currentMap][i].draw(g2, this);
+				obj[currentMap][i].draw(g2);
 			}
 		}
 		

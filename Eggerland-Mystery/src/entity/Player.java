@@ -34,13 +34,6 @@ public class Player extends Entity {
 		
 		this.gp = gp;
 		this.keyH = keyH;
-
-//		/*
-//		 * solidArea.x = 0; solidArea.y = 0; solidArea.width = gp.tileSize; //Esses
-//		 * valores determinam o hitbox do personagem, 0, 0 e (gp.tileSize) por padrao
-//		 * solidArea.height = gp.tileSize;
-//		 */
-			
 		
 		setDefaultValues();
 		getPlayerImage();		
@@ -168,18 +161,18 @@ public class Player extends Entity {
 			case 0:
 				if(keyCount >= 6) {
 					
-					gp.obj[gp.currentMap][2] = new OBJ_Chest();
-					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
-					gp.obj[gp.currentMap][2].worldY = 6 * gp.tileSize;
+					gp.obj[gp.currentMap][2] = new OBJ_Chest(gp);
+					gp.obj[gp.currentMap][2].x = 9 * gp.tileSize;
+					gp.obj[gp.currentMap][2].y = 6 * gp.tileSize;
 					
 				}
 				break;
 			case 1:
 				if(keyCount >= 5) {
 					
-					gp.obj[gp.currentMap][2] = new OBJ_Chest();
-					gp.obj[gp.currentMap][2].worldX = 9 * gp.tileSize;
-					gp.obj[gp.currentMap][2].worldY = 9 * gp.tileSize;
+					gp.obj[gp.currentMap][2] = new OBJ_Chest(gp);
+					gp.obj[gp.currentMap][2].x = 9 * gp.tileSize;
+					gp.obj[gp.currentMap][2].y = 9 * gp.tileSize;
 					
 				}
 				break;
@@ -187,9 +180,9 @@ public class Player extends Entity {
 			case 2:
 				if(keyCount >= 1) {
 					
-					gp.obj[gp.currentMap][2] = new OBJ_Chest();
-					gp.obj[gp.currentMap][2].worldX = 10 * gp.tileSize;
-					gp.obj[gp.currentMap][2].worldY = 10 * gp.tileSize;
+					gp.obj[gp.currentMap][2] = new OBJ_Chest(gp);
+					gp.obj[gp.currentMap][2].x = 10 * gp.tileSize;
+					gp.obj[gp.currentMap][2].y = 10 * gp.tileSize;
 					
 				}
 				break;
@@ -197,9 +190,9 @@ public class Player extends Entity {
 			case 3:
 				if(keyCount >= 3) {
 					
-					gp.obj[gp.currentMap][2] = new OBJ_Chest();
-					gp.obj[gp.currentMap][2].worldX = 6 * gp.tileSize;
-					gp.obj[gp.currentMap][2].worldY = 10 * gp.tileSize;
+					gp.obj[gp.currentMap][2] = new OBJ_Chest(gp);
+					gp.obj[gp.currentMap][2].x = 6 * gp.tileSize;
+					gp.obj[gp.currentMap][2].y = 10 * gp.tileSize;
 					
 				}
 				break;
@@ -234,14 +227,15 @@ public class Player extends Entity {
 			String objectName = gp.obj[gp.currentMap][i].name;
 			
 			switch(objectName) {
+			
 			case "Key":
-				
 				if(gp.currentMap == 0) shotCount += 2;
 				keyCount += 1;
 				gp.obj[gp.currentMap][i] = null;
 				System.out.println("Keys: " + shotCount);
 				gp.ui.showMessage("You got a key!");
 				break;
+				
 			case "Door":
 				if(shotCount > 0) {
 					gp.obj[gp.currentMap][i] = null;
@@ -253,11 +247,7 @@ public class Player extends Entity {
 				}
 				System.out.println("Keys: " + shotCount);
 				break;
-			case "Boots":
-				speed += 2;
-				gp.obj[gp.currentMap][i] = null;
-				gp.ui.showMessage("Speed Up!");
-				break;
+				
 			case "Chest": // Porta Final do Nivel
 				if(gp.currentMap < 3) {
 				keyCount = 0;
@@ -272,18 +262,23 @@ public class Player extends Entity {
 				
 			//controla a movimentacao do bloco verde
 			case "Bloco":
+				
 				switch(direction) {
+				
 				case "up":
-					gp.obj[gp.currentMap][i].worldY = gp.obj[gp.currentMap][i].worldY - gp.tileSize/4;
+					gp.obj[gp.currentMap][i].direction = "up";
 					break;
+					
 				case "down":
-					gp.obj[gp.currentMap][i].worldY = gp.obj[gp.currentMap][i].worldY + gp.tileSize/4;
+					gp.obj[gp.currentMap][i].direction = "down";
 					break;
+					
 				case "left":
-					gp.obj[gp.currentMap][i].worldX = gp.obj[gp.currentMap][i].worldX - gp.tileSize/4;
+					gp.obj[gp.currentMap][i].direction = "left";
 					break;
+					
 				case "right":
-					gp.obj[gp.currentMap][i].worldX = gp.obj[gp.currentMap][i].worldX + gp.tileSize/4;
+					gp.obj[gp.currentMap][i].direction = "right";
 					break;
 				}
 			}

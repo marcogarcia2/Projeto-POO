@@ -20,10 +20,10 @@ public class Caveira extends Entity{
 		
 		this.gp = gp;
 		
-		solidArea = new Rectangle(4,4,40,40);
-		solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
-		
+		//solidArea = new Rectangle(4,4,40,40);
+//		solidAreaDefaultX = solidArea.x;
+//		solidAreaDefaultY = solidArea.y;
+//		
 		collisionOn = true;
 		
 		getCaveiraImage();

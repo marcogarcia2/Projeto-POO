@@ -21,9 +21,7 @@ public class Medusa extends Entity {
 		
 		this.gp = gp;
 		this.direction = "down";
-		this.solidArea = new Rectangle(4,4,40,40);
-		solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
+		//this.solidArea = new Rectangle(4,4,40,40);
 		awake = false;
 		isBall = false;
 		timer = 11;
@@ -73,7 +71,7 @@ public class Medusa extends Entity {
 			awake = false;
 		}
 		
-		System.out.println(direction);
+		//System.out.println(direction);
 		
 	}
 	
