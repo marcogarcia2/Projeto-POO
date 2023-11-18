@@ -72,14 +72,13 @@ public class CollisionChecker {
 		//Acho melhor ou diminur o hitbox do objeto, porque ele pega direto o objeto;
 		
 		int index = 999;//Representa o numero do objeto no vetor de objetos
-		System.out.println("AAAAAAAAAAAA");
+	
 		for(int i = 0; i < gp.obj[gp.currentMap].length; i++) {
 			
 			if(gp.obj[gp.currentMap][i] != null) {
 				// Get entity's solid area position
 				entity.solidArea.x = entity.x + entity.solidArea.x;
 				entity.solidArea.y = entity.y + entity.solidArea.y;
-				if (!player) System.out.println("CCCCCC");
 				// Get the object's solid area positiond
 				gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].x + gp.obj[gp.currentMap][i].solidArea.x;
 				gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].y + gp.obj[gp.currentMap][i].solidArea.y;				

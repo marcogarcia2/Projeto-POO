@@ -21,7 +21,7 @@ public class OBJ_Bloco extends Entity{
 		//direction = null;
 		this.speed = gp.player.speed;
 		
-		solidArea = new Rectangle(0,0,48,48);
+		solidArea = new Rectangle(1,1,46,46);
 		
 		name = "Bloco";
 		try {
@@ -92,9 +92,11 @@ public class OBJ_Bloco extends Entity{
 		
 		int boxIndex = -1;
 		for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
-			if (gp.obj[gp.currentMap][i].equals(this)) {
-				boxIndex = i;
-				break;
+			if (gp.obj[gp.currentMap][i] != null) {
+				if (gp.obj[gp.currentMap][i].equals(this)) {
+					boxIndex = i;
+					break;
+				}
 			}
 		}
 		
@@ -104,9 +106,10 @@ public class OBJ_Bloco extends Entity{
 	        if (obj != null && i != boxIndex) {
 	        
 	            // Verificar se a entidade é uma porta (Door ou DoorOpen)
-	            if (obj.name.equals("Door") || obj.name.equals("Chest")) {
+	            if (obj.name == "Door" || obj.name == "Chest") {
 	                continue; // Ignorar a verificação de colisão com portas
 	            }
+	            
 	            int boxX = obj.x;
 	            int boxY = obj.y;
 	            int boxWidth = obj.solidArea.width;
