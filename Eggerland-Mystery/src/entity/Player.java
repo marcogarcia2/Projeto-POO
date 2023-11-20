@@ -96,6 +96,7 @@ public class Player extends Entity {
 		
 		if(lifeCount == 0){
 			gp.ui.gameFinished = true;
+			MapFileManager.writeCurrentMap(0);
 		}
 			
 		if(keyH.upPressed == true) {
@@ -125,9 +126,11 @@ public class Player extends Entity {
 		//CHECK MONSTER COLLISION
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
 		if (monsterIndex != 999 && gp.currentMap != 0) {
-			//life--;
-			if (gp.monsterList[gp.currentMap][monsterIndex].awake)
+			if (gp.monsterList[gp.currentMap][monsterIndex].awake) {
 				gp.resetGame();
+				lifeCount--;
+			}
+				
 		}
 		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
@@ -241,20 +244,6 @@ public class Player extends Entity {
 				if(gp.currentMap == 0) shotCount += 2;
 				keyCount += 1;
 				gp.obj[gp.currentMap][i] = null;
-				System.out.println("Keys: " + shotCount);
-				gp.ui.showMessage("You got a key!");
-				break;
-				
-			case "Door":
-				if(shotCount > 0) {
-					gp.obj[gp.currentMap][i] = null;
-					shotCount--;
-					gp.ui.showMessage("You opened the door");
-				}
-				else {
-					gp.ui.showMessage("You need a key!");
-				}
-				System.out.println("Keys: " + shotCount);
 				break;
 				
 			case "Chest": // Porta Final do Nivel
@@ -293,12 +282,6 @@ public class Player extends Entity {
 			}
 		}
 	}
-	
-	/*
-	 * void interactMonster(int i) { if (i != 999) {
-	 * System.out.println("You are hitting a monster!"); } }
-	 */
-	
 	
 	public void draw(Graphics2D g2) {
 

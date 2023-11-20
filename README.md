@@ -16,7 +16,7 @@ O projeto consiste na recriação das 4 primeiras fases do jogo `Eggerland Myste
 
 Utilizamos a `Eclipse IDE` ao invés de NetBeans, pois tem uma melhor compatibilidade com o desenvolvimento de games. O projeto contém duas source folders, **src** e **res**. A pasta src contém todas as classes que utilizamos, organizadas em pacotes, enquanto que a pasta res contém tudo aquilo que não é código, isto é, as imagens e os mapas que utilizamos. 
 
-As sprites foram todas redesenhadas, através da aplicação `Piskel`, que é um editor de PixelArts para navegador. Todos os ladrilhos do jogo são de 16x16 pixels. Para descobrir as características do jogo as funcionalidades que iríamos implementar, jogamos algumas fases do jogo através de um [emulador online](https://www.retrogames.cc/msx1-games/eggerland-mystery.html).
+As sprites foram todas redesenhadas através da aplicação `Piskel`, que é um editor de PixelArts para navegador. Todos os ladrilhos do jogo são de 16x16 pixels. Para descobrir as características do jogo as funcionalidades que iríamos implementar, jogamos algumas fases do jogo através de um [emulador online](https://www.retrogames.cc/msx1-games/eggerland-mystery.html).
 
 
 ## Inspirações
@@ -27,7 +27,10 @@ Playlist: https://www.youtube.com/playlist?list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4q
 
 ## Como jogar
 
-Pressione `W`, `A`, `S`, `D` para se mover para cima, esquerda, baixo e direita, respectivamente. Se você possuir munição, aperte `Space` para atirar. Para reiniciar uma fase, pressione a tecla `R`. Para reiniciar o jogo desde a primeira fase, pressione `I` e feche a janela. Ao reabrir, você iniciará na primeira fase.
 
+
+Pressione `W`, `A`, `S`, `D` para se mover para cima, esquerda, baixo e direita, respectivamente. Se você possuir munição, aperte `Space` para atirar. Para pausar o jogo, pressione a tecla `P`, e para reiniciar uma fase, pressione a tecla `R`. Para reiniciar o jogo desde a primeira fase, pressione `I` e feche a janela. Ao reabrir, você iniciará na primeira fase.
+
+Pode ser que aconteça algum erro de importação de classes. Caso aconteça, dê "clean" no projeto e depois "run", que o jogo deve funcionar normalmente.
 
 > Quaisquer problemas para rodar o jogo, entre em contato conosco!

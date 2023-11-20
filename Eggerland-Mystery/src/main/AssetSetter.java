@@ -21,10 +21,6 @@ public class AssetSetter {
 		gp.obj[mapNum][0].x = 3 * gp.tileSize;
 		gp.obj[mapNum][0].y = 5 * gp.tileSize;
 		
-		gp.obj[mapNum][1] = new OBJ_Door(gp);
-		gp.obj[mapNum][1].x = 14 * gp.tileSize;
-		gp.obj[mapNum][1].y = 1 * gp.tileSize;
-		
 		gp.obj[mapNum][3] = new OBJ_Key(gp);
 		gp.obj[mapNum][3].x = 3 * gp.tileSize; 
 		gp.obj[mapNum][3].y = 7 * gp.tileSize;
