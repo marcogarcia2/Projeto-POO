@@ -63,7 +63,7 @@ public class CollisionChecker {
 			}
 			break;
 			
-		default: break;
+		//default: break;
 		}
 	}
 	

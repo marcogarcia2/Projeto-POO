@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -12,8 +13,9 @@ import main.GamePanel;
 public class Cobrinha extends Entity{
 
 	GamePanel gp;
-	private long timer = 0;
-	public BufferedImage left1, right1, down1, down2, ball;
+	private long timer = 101;
+	public BufferedImage left1, right1, down1, down2, image, ball;
+	Random random;
 	
 	public Cobrinha(GamePanel gp) {
 		
@@ -25,8 +27,10 @@ public class Cobrinha extends Entity{
 		//solidAreaDefaultY = solidArea.y;
 		
 		isBall = false;
+		random = new Random();
 		
 		getCobrinhaImage();
+		image = down1;
 	}
 	
 	public void getCobrinhaImage() {
@@ -42,35 +46,38 @@ public class Cobrinha extends Entity{
 		}	
 	}
 	
+	// Aleatoriza as sprites da cobrinha
 	public void draw (Graphics2D g2) {
-		
-		BufferedImage image = null;
 		
 		if (isBall == false) {
 			
-			if (timer < 100) {
-				image = left1;
-			}
-			else if (timer >= 100 && timer < 200) {
-				image = down1;
-			}
-			else if (timer >= 200 && timer < 300) {
-				image = down2;
-			}
-			else if (timer >= 300 && timer < 400) {
-				image = right1;
-			}
-			else if (timer >= 400 && timer < 500) {
-				image = down2;
-			}
-			else if (timer >= 500 && timer < 600) {
-				image = down1;
-			}
-			else {
-				image = left1;
+			if (timer > 100) {
+
+				int num = random.nextInt(4);
+				
+				switch(num) {
+				
+				case 0:
+					image = left1;
+					break;
+				
+				case 1:
+					image = right1;
+					break;
+					
+				case 2:
+					image = down1;
+					break;
+				
+				case 3:
+					image = down2;
+					break;
+				}
 				timer = 0;
 			}
-			timer++;
+			
+			else timer++;
+			
 		}
 		else {
 			image = ball;

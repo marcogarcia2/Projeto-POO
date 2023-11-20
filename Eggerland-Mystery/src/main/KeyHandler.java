@@ -38,7 +38,6 @@ public class KeyHandler implements KeyListener {
 		}
 		if(code == KeyEvent.VK_SPACE) {
 			spacePressed = true;
-			System.out.println("espaço");
 		}	
 		if(code == KeyEvent.VK_P) {
 			 if(gp.gameState == gp.playState){

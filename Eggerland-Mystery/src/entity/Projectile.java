@@ -14,7 +14,7 @@ public abstract class Projectile extends Entity{
 	public Projectile (GamePanel gp) {
 		this.gp = gp;
 		timer = 0;
-		solidArea = new Rectangle(2,2,44,44);
+		solidArea = new Rectangle(6,6,36,36);
 	}
 	
 	public void set(int x, int y, String direction, Entity user) {
@@ -69,7 +69,8 @@ public abstract class Projectile extends Entity{
 			
 			try { 
 				if (gp.cChecker.checkPlayer(this, gp.player)) { // MATAR O JOGADOR,
-					gp.projectileList.remove(this); 		  
+					gp.projectileList.remove(this); 
+					// Life --;
 					gp.resetGame();
 				} 
 			} catch(ArrayIndexOutOfBoundsException e) {
@@ -80,7 +81,6 @@ public abstract class Projectile extends Entity{
 			int objIndex = gp.cChecker.checkObject(this, true); if (objIndex != 999) {
 				  gp.projectileList.remove(this); 
 			}
-			 
 			
 			// Caso aconteça algum bug e o projetil saia do mapa
 			try { 

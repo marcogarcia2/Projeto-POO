@@ -14,7 +14,7 @@ public class Dino extends Entity {
 	
 	GamePanel gp;
 	BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-	int timer;
+	int timer, dinoIndex;
 	
 	public Dino(GamePanel gp, String direction){
 		
@@ -23,8 +23,10 @@ public class Dino extends Entity {
 		//this.solidArea = new Rectangle(4,4,40,40);
 		awake = false;
 		isBall = false;
-		timer = 0;
+		timer = 31;
+		
 		getDinoImage();
+		
 	}
 	
 	public void getDinoImage() {
@@ -79,12 +81,11 @@ public class Dino extends Entity {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 		if (gp.player.keyCount > 0) {
 			awake = true;
 		}
 		
-		if (awake) shoot();
+		if (awake && checkLine(gp.player)) shoot();
 	}	
 	
 	private void shoot() {
@@ -98,5 +99,37 @@ public class Dino extends Entity {
 			timer = 0;
 		}
 		timer++;
+	}
+	
+	boolean checkLine (Entity player) {
+		
+		int playerX = player.x + (player.solidArea.width) / 2;
+		int playerY = player.y + (player.solidArea.height) / 2;
+		
+		switch(direction) {
+		
+		case "up":
+			if (playerX > x && playerX < x + solidArea.width && y > playerY)
+				return true;
+			break;
+			
+		case "down":
+			if (playerX > x && playerX < x + solidArea.width && y < playerY)
+				return true;
+			break;
+			
+			
+		case "left":
+			if (playerY > y && playerY < y + solidArea.height && x > playerX)
+				return true;
+			break;
+			
+		case "right":
+			if (playerY > y && playerY < y + solidArea.height && x < playerX)
+				return true;
+			break;	
+		}
+				
+		return false;
 	}
 }

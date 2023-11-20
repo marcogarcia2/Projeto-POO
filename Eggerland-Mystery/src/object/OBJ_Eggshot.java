@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class OBJ_Eggshot extends Projectile{
 		
 		super(gp);
 		this.gp = gp;
-		
+		solidArea = new Rectangle(8,8,32,32);
 		name = "Eggshot";
 		speed = 8;
 		timer = 0;

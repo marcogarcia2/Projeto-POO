@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -18,6 +19,8 @@ public class OBJ_Fireball extends Projectile{
 		
 		super(gp);
 		this.gp = gp;
+		
+		solidArea = new Rectangle(-10,-10,68,68);
 		
 		name = "Fireball";
 		speed = 20;
@@ -38,6 +41,7 @@ public class OBJ_Fireball extends Projectile{
 			e.printStackTrace();	
 		}
 	}
+	
 	
 	public void draw(Graphics2D g2) {
 		

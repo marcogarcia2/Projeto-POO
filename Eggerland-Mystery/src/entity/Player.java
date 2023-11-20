@@ -19,8 +19,7 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	KeyHandler keyH;
-	public int shotCount;
-	public int keyCount;
+	public int shotCount, keyCount;
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
 
 	public boolean canShoot;
@@ -119,7 +118,10 @@ public class Player extends Entity {
 		
 		//CHECK MONSTER COLLISION
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
-		//interactMonster(monsterIndex);
+		if (monsterIndex != 999 && gp.currentMap != 0) {
+			//life--;
+			gp.resetGame();
+		}
 		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 			
@@ -261,7 +263,7 @@ public class Player extends Entity {
 				break;
 				
 			//controla a movimentacao do bloco verde
-			case "Bloco":
+			case "Box":
 				
 				switch(direction) {
 				
@@ -292,10 +294,7 @@ public class Player extends Entity {
 	
 	
 	public void draw(Graphics2D g2) {
-		
-		//g2.setColor(Color.white);
-		//g2.fillRect(x, y, gp.tileSize, gp.tileSize);
-		
+
 		BufferedImage image = null;
 		
 		switch(direction) {
