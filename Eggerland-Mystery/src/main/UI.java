@@ -4,15 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 
 import object.OBJ_Eggshot;
 import object.OBJ_Key;
-import object.OBJ_Lolo;
-import entity.Player;
 
 public class UI {
 	
@@ -29,7 +26,6 @@ public class UI {
 	
 	double playTime;
 	DecimalFormat dFormat = new DecimalFormat("#0.0");
-
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -39,10 +35,8 @@ public class UI {
 		arial_20 = new Font("Arial", Font.PLAIN, 20);
 		OBJ_Key key = new OBJ_Key(gp);
 		OBJ_Eggshot egg = new OBJ_Eggshot(gp);
-		OBJ_Lolo lolo = new OBJ_Lolo(gp);
 		keyImage = key.image;
 		shotImage = egg.horizontal;
-		loloImage =  lolo.image;
 				
 	}
 	
@@ -72,44 +66,27 @@ public class UI {
 			int x;
 			int y;
 			
-			
-			text = "Seu tempo eh: " + dFormat.format(playTime) + "!";
+			text = "You found the treasure!";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 			
 			x = gp.screenWidth/2 - textLength/2;
-			y = gp.screenHeight/3;
+			y = gp.screenHeight/2 - (gp.tileSize*3);
 			g2.drawString(text, x, y);
 			
-			text = "Creditos:";
-			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-			
-			x = gp.screenWidth/2 - textLength/2;
-			y = gp.screenHeight/2 + (gp.tileSize*3);
-			g2.drawString(text, x, y);
-			
-			text = "Luciano (13676520)";
+			text = "Your time is : " + dFormat.format(playTime) + "!";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 			
 			x = gp.screenWidth/2 - textLength/2;
 			y = gp.screenHeight/2 + (gp.tileSize*4);
 			g2.drawString(text, x, y);
-			
-			text = "Marco (11833581)";
-			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-			
-			x = gp.screenWidth/2 - textLength/2;
-			y = gp.screenHeight/2 + (gp.tileSize*5);
-			g2.drawString(text, x, y);
-			
-			
 
 			g2.setFont(arial_80B);
 			g2.setColor(Color.yellow);
-			text = "Fim!";
+			text = "Congratulations!";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 			
 			x = gp.screenWidth/2 - textLength/2;
-			y = gp.screenHeight/2 - (gp.tileSize*3);
+			y = gp.screenHeight/2 + (gp.tileSize*2);
 			g2.drawString(text, x, y);
 			
 			gp.gameThread = null;
@@ -121,7 +98,6 @@ public class UI {
 			g2.drawImage(loloImage, 13*gp.tileSize, 3*gp.tileSize, gp.tileSize, gp.tileSize, null);
 			g2.drawImage(shotImage, 13*gp.tileSize, 4*gp.tileSize, gp.tileSize, gp.tileSize, null);
 			g2.drawString(" " + gp.player.shotCount, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
-			g2.drawString(" " + gp.player.lifeCount, 14*gp.tileSize + 5 , 4*gp.tileSize - 5);
 			
 			// TIME
 			playTime += (double)1/60;
