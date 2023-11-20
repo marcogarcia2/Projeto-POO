@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import object.OBJ_Eggshot;
 import object.OBJ_Key;
+import object.OBJ_Lolo;
 
 public class UI {
 	
@@ -35,8 +36,11 @@ public class UI {
 		arial_20 = new Font("Arial", Font.PLAIN, 20);
 		OBJ_Key key = new OBJ_Key(gp);
 		OBJ_Eggshot egg = new OBJ_Eggshot(gp);
+		OBJ_Lolo lolo = new OBJ_Lolo(gp);
 		keyImage = key.image;
 		shotImage = egg.horizontal;
+		loloImage = lolo.image;
+		
 				
 	}
 	
@@ -98,6 +102,7 @@ public class UI {
 			g2.drawImage(loloImage, 13*gp.tileSize, 3*gp.tileSize, gp.tileSize, gp.tileSize, null);
 			g2.drawImage(shotImage, 13*gp.tileSize, 4*gp.tileSize, gp.tileSize, gp.tileSize, null);
 			g2.drawString(" " + gp.player.shotCount, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
+			g2.drawString(" " + gp.player.lifeCount, 14*gp.tileSize + 5 , 4*gp.tileSize - 5);
 			
 			// TIME
 			playTime += (double)1/60;
