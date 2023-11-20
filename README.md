@@ -25,4 +25,9 @@ Nos inspiramos nos vídeos de [RyiSnow](https://www.youtube.com/@RyiSnow), um de
 Playlist: https://www.youtube.com/playlist?list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4qSq
 
 
+## Como jogar
+
+Pressione `W`, `A`, `S`, `D` para se mover para cima, esquerda, baixo e direita, respectivamente. Se você possuir munição, aperte `Space` para atirar. Para reiniciar uma fase, pressione a tecla `R`. Para reiniciar o jogo desde a primeira fase, pressione `I` e feche a janela. Ao reabrir, você iniciará na primeira fase.
+
+
 > Quaisquer problemas para rodar o jogo, entre em contato conosco!
