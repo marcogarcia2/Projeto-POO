@@ -180,6 +180,13 @@ public class Caveira extends Entity{
 	            break;
 	    }
 
+	    int originalX = this.x;
+	    int originalY = this.y;
+
+	    // Tentar mover a caveira para a posição futura
+	    this.x = futureX;
+	    this.y = futureY;
+
 	    for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
 	        Entity obj = gp.obj[gp.currentMap][i];
 	        if (obj != null && obj != this) {
@@ -191,7 +198,10 @@ public class Caveira extends Entity{
 
 	            // Ignorar colisão com objetos da classe OBJ_Bloco
 	            if (obj instanceof OBJ_Bloco) {
-	                continue;
+	                this.x = originalX;
+	                this.y = originalY; // Restaurar a posição original
+	                System.out.println("TRUE");
+	                return true; // Há colisão com a caixa
 	            }
 
 	            int boxX = obj.x;
@@ -230,6 +240,8 @@ public class Caveira extends Entity{
 	                    obj.x = otherBoxFutureX;
 	                    obj.y = otherBoxFutureY;
 	                } else {
+	                    this.x = originalX;
+	                    this.y = originalY; // Restaurar a posição original
 	                    return true; // Há colisão com outra entidade
 	                }
 	            }
@@ -238,6 +250,7 @@ public class Caveira extends Entity{
 
 	    return false;
 	}
+
 
 
 
@@ -295,12 +308,30 @@ public class Caveira extends Entity{
 		actionTimer++;
 		
 	    //if (gp.player.keyCount == 5 && !checkMonsterCollision() && !checkObjectCollision()) {
-	    if (!checkMonsterCollision() && !checkObjectCollision()) {
+	    if (!checkMonsterCollision() ){//&& !checkObjectCollision()) {
 		
-	    	
 	    	awake = true;
 	    	
-	    	if (actionTimer >= 30){
+	    	int objIndex = gp.cChecker.checkObject(this, true);
+	    	if (objIndex != 999 && (gp.obj[gp.currentMap][objIndex].name.equals("Box" ) || gp.obj[gp.currentMap][objIndex].name.equals("Key")) ) {
+	    		
+	    		switch (direction) {
+	            case "down":
+	                direction = "up";
+	                break;
+	            case "up":
+	                direction = "down";
+	                break;
+	            case "right":
+	                direction = "left";
+	                break;
+	            case "left":
+	                direction = "right";
+	                break;
+	    		}
+	    	}
+	    	
+	    	if (actionTimer >= 35){
 	    		
 	    		actionTimer = 0;
 	    	
