@@ -20,6 +20,8 @@ public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler keyH;
 	public int shotCount, keyCount;
+	public int lifeCount = 5;
+	
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, right1, right2;
 
 	public boolean canShoot;
@@ -92,6 +94,10 @@ public class Player extends Entity {
 		//solidArea.x = x;
 		//solidArea.y = y;
 		
+		if(lifeCount == 0){
+			gp.ui.gameFinished = true;
+		}
+			
 		if(keyH.upPressed == true) {
 			direction = "up";
 		}
