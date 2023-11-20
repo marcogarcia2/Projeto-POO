@@ -69,7 +69,8 @@ public abstract class Projectile extends Entity{
 			
 			try { 
 				if (gp.cChecker.checkPlayer(this, gp.player)) { // MATAR O JOGADOR,
-					gp.projectileList.remove(this); 		  
+					gp.projectileList.remove(this); 
+					gp.player.lifeCount --;
 					gp.resetGame();
 				} 
 			} catch(ArrayIndexOutOfBoundsException e) {

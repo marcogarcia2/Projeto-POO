@@ -30,9 +30,11 @@ public class OBJ_Bullet extends Projectile{
 	public void getImage() {
 		
 		try {
-			vertical = ImageIO.read(getClass().getResourceAsStream("/object/medusa_shot_1.png"));
-			horizontal = ImageIO.read(getClass().getResourceAsStream("/object/medusa_shot_2.png"));
-		
+			//vertical = ImageIO.read(getClass().getResourceAsStream("/object/medusa_shot_1.png"));
+			//horizontal = ImageIO.read(getClass().getResourceAsStream("/object/medusa_shot_2.png"));
+			vertical = ImageIO.read(getClass().getResourceAsStream("/object/eggshot_1.png"));
+			horizontal = ImageIO.read(getClass().getResourceAsStream("/object/eggshot_2.png"));
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
