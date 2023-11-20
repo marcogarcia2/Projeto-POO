@@ -216,4 +216,29 @@ public class CollisionChecker {
         
         return false;
 	}
+	
+	public int checkKeyCollision(Entity entity, Entity key) {
+	    int index = 999;
+
+	    // Get entity's solid area position
+	    entity.solidArea.x = entity.x + entity.solidArea.x;
+	    entity.solidArea.y = entity.y + entity.solidArea.y;
+
+	    // Get the Key's solid area position
+	    key.solidArea.x = key.x + key.solidArea.x;
+	    key.solidArea.y = key.y + key.solidArea.y;
+
+	    if (entity.solidArea.intersects(key.solidArea)) {
+	        entity.collisionOn = true;
+	        index = 0; // Assumindo que só há uma Key no mapa
+	    }
+
+	    entity.solidArea.x = entity.solidAreaDefaultX;
+	    entity.solidArea.y = entity.solidAreaDefaultY;
+	    key.solidArea.x = key.solidAreaDefaultX;
+	    key.solidArea.y = key.solidAreaDefaultY;
+
+	    return index;
+	}
+
 }

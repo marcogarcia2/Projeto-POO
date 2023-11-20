@@ -16,7 +16,7 @@ public class Caveira extends Entity{
 	Random random;
 	GamePanel gp;
 	private long timer = 0, actionTimer = 0;
-	public boolean awake = false;
+	
 	public BufferedImage sleep, angry1, angry2;
 	
 	public Caveira (GamePanel gp) {
@@ -26,7 +26,7 @@ public class Caveira extends Entity{
 		solidArea = new Rectangle(1,1,46,46);
 //		solidAreaDefaultX = solidArea.x;
 //		solidAreaDefaultY = solidArea.y;
-//		
+		awake = false;
 		random = new Random();
 		collisionOn = true;
 		speed = 3;
@@ -83,178 +83,6 @@ public class Caveira extends Entity{
 
 		return true;
 	}
-	
-//	private boolean checkObjectCollision() {
-//	    int futureX = this.x;
-//	    int futureY = this.y;
-//
-//	    switch (direction) {
-//	        case "up":
-//	            futureY -= gp.tileSize / 30;
-//	            break;
-//	        case "down":
-//	            futureY += gp.tileSize / 30;
-//	            break;
-//	        case "left":
-//	            futureX -= gp.tileSize / 30;
-//	            break;
-//	        case "right":
-//	            futureX += gp.tileSize / 30;
-//	            break;
-//	        default:
-//	            break;
-//	    }
-//
-//	    for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
-//	        Entity obj = gp.obj[gp.currentMap][i];
-//	        if (obj != null && obj != this) {
-//
-//	            // Verificar se a entidade é uma porta (Door ou DoorOpen)
-//	            if (obj.name.equals("Door") || obj.name.equals("Chest")) {
-//	                continue; // Ignorar a verificação de colisão com portas
-//	            }
-//
-//	            int boxX = obj.x;
-//	            int boxY = obj.y;
-//	            int boxWidth = obj.solidArea.width;
-//	            int boxHeight = obj.solidArea.height;
-//
-//	            if (futureX < boxX + boxWidth &&
-//	                futureX + this.solidArea.width > boxX &&
-//	                futureY < boxY + boxHeight &&
-//	                futureY + this.solidArea.height > boxY) {
-//
-//	                // Verificar a direção para mover a outra entidade
-//	                int otherBoxFutureX = obj.x;
-//	                int otherBoxFutureY = obj.y;
-//
-//	                switch (direction) {
-//	                    case "up":
-//	                        otherBoxFutureY -= gp.tileSize / 30;
-//	                        break;
-//	                    case "down":
-//	                        otherBoxFutureY += gp.tileSize / 30;
-//	                        break;
-//	                    case "left":
-//	                        otherBoxFutureX -= gp.tileSize / 30;
-//	                        break;
-//	                    case "right":
-//	                        otherBoxFutureX += gp.tileSize / 30;
-//	                        break;
-//	                    default:
-//	                        break;
-//	                }
-//
-//	                // Se não houver colisão, atualiza a posição da outra entidade
-//	                if (!checkTileCollision(otherBoxFutureX, otherBoxFutureY)) {
-//	                    obj.x = otherBoxFutureX;
-//	                    obj.y = otherBoxFutureY;
-//	                } else {
-//	                    return true; // Há colisão com outra entidade
-//	                }
-//	            }
-//	        }
-//	    }
-//	    
-//	    return false;
-//	}
-	
-	private boolean checkObjectCollision() {
-	    int futureX = this.x;
-	    int futureY = this.y;
-
-	    switch (direction) {
-	        case "up":
-	            futureY -= gp.tileSize / 30;
-	            break;
-	        case "down":
-	            futureY += gp.tileSize / 30;
-	            break;
-	        case "left":
-	            futureX -= gp.tileSize / 30;
-	            break;
-	        case "right":
-	            futureX += gp.tileSize / 30;
-	            break;
-	        default:
-	            break;
-	    }
-
-	    int originalX = this.x;
-	    int originalY = this.y;
-
-	    // Tentar mover a caveira para a posição futura
-	    this.x = futureX;
-	    this.y = futureY;
-
-	    for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
-	        Entity obj = gp.obj[gp.currentMap][i];
-	        if (obj != null && obj != this) {
-
-	            // Verificar se a entidade é uma porta (Door ou DoorOpen)
-	            if (obj.name.equals("Door") || obj.name.equals("Chest")) {
-	                continue; // Ignorar a verificação de colisão com portas
-	            }
-
-	            // Ignorar colisão com objetos da classe OBJ_Bloco
-	            if (obj instanceof OBJ_Bloco) {
-	                this.x = originalX;
-	                this.y = originalY; // Restaurar a posição original
-	                System.out.println("TRUE");
-	                return true; // Há colisão com a caixa
-	            }
-
-	            int boxX = obj.x;
-	            int boxY = obj.y;
-	            int boxWidth = obj.solidArea.width;
-	            int boxHeight = obj.solidArea.height;
-
-	            if (futureX < boxX + boxWidth &&
-	                futureX + this.solidArea.width > boxX &&
-	                futureY < boxY + boxHeight &&
-	                futureY + this.solidArea.height > boxY) {
-
-	                // Verificar a direção para mover a outra entidade
-	                int otherBoxFutureX = obj.x;
-	                int otherBoxFutureY = obj.y;
-
-	                switch (direction) {
-	                    case "up":
-	                        otherBoxFutureY -= gp.tileSize / 30;
-	                        break;
-	                    case "down":
-	                        otherBoxFutureY += gp.tileSize / 30;
-	                        break;
-	                    case "left":
-	                        otherBoxFutureX -= gp.tileSize / 30;
-	                        break;
-	                    case "right":
-	                        otherBoxFutureX += gp.tileSize / 30;
-	                        break;
-	                    default:
-	                        break;
-	                }
-
-	                // Se não houver colisão, atualiza a posição da outra entidade
-	                if (!checkTileCollision(otherBoxFutureX, otherBoxFutureY)) {
-	                    obj.x = otherBoxFutureX;
-	                    obj.y = otherBoxFutureY;
-	                } else {
-	                    this.x = originalX;
-	                    this.y = originalY; // Restaurar a posição original
-	                    return true; // Há colisão com outra entidade
-	                }
-	            }
-	        }
-	    }
-
-	    return false;
-	}
-
-
-
-
-
 
 	private boolean checkTileCollision(int futureX, int futureY) {
 	    int boxLeftCol = futureX / gp.tileSize;
@@ -299,16 +127,13 @@ public class Caveira extends Entity{
 	    }
 	}
 
-	
-
 
 	@Override
 	public void update() {
 		
 		actionTimer++;
 		
-	    //if (gp.player.keyCount == 5 && !checkMonsterCollision() && !checkObjectCollision()) {
-	    if (!checkMonsterCollision() ){//&& !checkObjectCollision()) {
+	    if (gp.player.keyCount == 5 && !checkMonsterCollision() ) {
 		
 	    	awake = true;
 	    	

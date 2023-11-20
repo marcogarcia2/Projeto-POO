@@ -43,6 +43,17 @@ public class OBJ_Bloco extends Entity{
 		}
 		
 		private boolean checkObjectCollision() {
+			
+			for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
+		        if (gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals("Key")) {
+		            int keyIndex = gp.cChecker.checkKeyCollision(this, gp.obj[gp.currentMap][i]);
+
+		            if (keyIndex != 999) {
+		                return true; // Há colisão com uma Key
+		            }
+		        }
+		    }
+		    
 		    int futureX = this.x;
 		    int futureY = this.y;
 

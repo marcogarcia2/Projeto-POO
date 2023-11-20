@@ -120,7 +120,8 @@ public class Player extends Entity {
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
 		if (monsterIndex != 999 && gp.currentMap != 0) {
 			//life--;
-			gp.resetGame();
+			if (gp.monsterList[gp.currentMap][monsterIndex].awake)
+				gp.resetGame();
 		}
 		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {

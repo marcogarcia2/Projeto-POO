@@ -24,7 +24,7 @@ public abstract class Entity {
 	public abstract void draw(Graphics2D g2);
 	
 	public boolean isBall; // exclusivo da cobrinha
-	public boolean awake;
+	public boolean awake = true;
 
 	//public void update() {
 		// TODO Auto-generated method stub
