@@ -8,7 +8,7 @@ Projeto da disciplina SCC0604 - Programação Orientada a Objetos, ministrada pe
 O projeto consiste na recriação das 4 primeiras fases do jogo `Eggerland Mystery`, primeiro jogo da série [Eggerland](https://en.wikipedia.org/wiki/Eggerland), lançado em 1985 para MSX. O jogo é um puzzle de 105 fases, em que o personagem principal `Lolo` percorre  um labirinto para resgatar a princesa Lala, derrotando os monstros que a sequestraram.
 
 <p align="center">
-  <img src="All Sprites/capa_do_jogo.webp" alt="Eggerland Mystery" width="300">
+  <img src="Sprites(ALL)/capa_do_jogo.webp" alt="Eggerland Mystery" width="300">
 </p>
 <p align="center">
   <span style="font-size: 12px;">Capa original do jogo Eggerland Mystery</span>
