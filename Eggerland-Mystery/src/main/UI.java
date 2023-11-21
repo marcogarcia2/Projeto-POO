@@ -12,7 +12,7 @@ import object.OBJ_Eggshot;
 import object.OBJ_Key;
 import object.OBJ_Lolo;
 
-public class UI {
+public class UI {//Classe responsavel por desenhar informacoes na tela
 	
 	GamePanel gp;
 	Graphics2D g2;
@@ -97,12 +97,12 @@ public class UI {
 			g2.drawString(" " + gp.player.shotCount, 14*gp.tileSize + 5 , 5*gp.tileSize - 5);
 			g2.drawString(" " + gp.player.lifeCount, 14*gp.tileSize + 5 , 4*gp.tileSize - 5);
 			
-			// TIME
+			// Tempo
 			playTime += (double)1/60;
 			g2.setFont(arial_20);
 			g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize*13, gp.tileSize*12 -3);
 			
-			// MESSAGE
+			// Mensagem
 			if(messageOn == true) {
 				
 				g2.setFont(g2.getFont().deriveFont(30F));
@@ -122,7 +122,7 @@ public class UI {
 		}
 	}
 	
-	public void drawPauseScreen() {
+	public void drawPauseScreen() {//Desenha a tela de Pause
 		
 		
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,90F));

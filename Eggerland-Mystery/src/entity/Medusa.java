@@ -11,7 +11,7 @@ import main.GamePanel;
 import object.OBJ_Bullet;
 import object.OBJ_Fireball;
 
-public class Medusa extends Entity {
+public class Medusa extends Entity { // Define o inimigo da 4a fase
 	
 	GamePanel gp;
 	BufferedImage imgsleep, imgawake;

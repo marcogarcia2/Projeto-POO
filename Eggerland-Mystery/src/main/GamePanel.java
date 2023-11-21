@@ -14,9 +14,10 @@ import entity.Projectile;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
+//Essa classe eh responsavel pelo controle do fluxo de jogo
 
 	
-	//SCREEN SETTINGS
+	//Parametros de Tela
 	final int originalTileSize = 16; 
 	final int scale = 3;
 	
@@ -33,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 	//FPS 
 	int FPS = 60;
 	
-	//SYSTEM
+	//Sistema
 	public TileManager tileM = new TileManager(this);
 	public KeyHandler keyH = new KeyHandler(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
@@ -42,19 +43,19 @@ public class GamePanel extends JPanel implements Runnable {
 	public UI ui = new UI(this);
 	Thread gameThread;
 	
-	//ENTITY AND OBJECT
+	//Entidade e Objetos
 	public Player player = new Player(this,keyH);
 	public Entity obj[][] = new Entity[maxMap][25]; //SuperObject[] recebe o numero de objetos simultaneos
 	//public ArrayList<Entity> monsterList = new ArrayList<>();
 	public Entity[][] monsterList = new Entity[maxMap][10];
 	public ArrayList<Projectile> projectileList = new ArrayList<>();
 	
-	//GAME STATE
+	//Estado de Jogo
 	public int gameState;
 	public final int playState = 1;
 	public final int pauseState = 2;
 	
-	// Set players's default position
+	// Parametros do Jogador
 	int playerX = 100;
 	int playerY = 100;
 	int playerSpeed = 4;
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable {
 		currentMap = MapFileManager.readCurrentMap();
 	}
 	
-	public void setupGame() {
+	public void setupGame() {//Coloca os objetos e monstros no nivel
 		
 		aSetter.setObject();
 		monsterSetter.setMonsters();
@@ -78,13 +79,13 @@ public class GamePanel extends JPanel implements Runnable {
 		gameState = playState;
 	}
 
-	public void startGameThread() {
+	public void startGameThread() {//Inicia a thread do jogo
 		
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
 	
-	public void resetGame() {
+	public void resetGame() {//Reseta a fase
 		player.setDefaultValues();
 		setupGame();
 		
@@ -92,7 +93,6 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		double drawInterval = 1000000000/FPS;
 		double delta = 0;
 		long lastTime = System.nanoTime();
@@ -108,9 +108,9 @@ public class GamePanel extends JPanel implements Runnable {
 			lastTime = currentTime;
 			
 			if(delta >= 1) {
-				//UPDATE: update information
+				//UPDATE: atualiza informacao
 				update();
-				//DRAW: draw the screen with updated info
+				//DRAW: desenha tela com informacao atualizada
 				repaint();
 				delta--;
 				drawCount++;
@@ -123,13 +123,13 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 		}
 	}
-	public void update() {
-		
+	public void update() {// Atualiza constantemente o jogo
+		                          
 		if(gameState == playState) {
 			player.update();
 		}
 		if(gameState == pauseState) {
-			// nada
+			// nada, jogo pausado
 		}
 		
 		for (int i = 0; i < monsterList[currentMap].length; i++) {
@@ -152,40 +152,40 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {// Desenha os componentes do jogo na tela
 		
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
-		// TILE
+		// Blocos
 		tileM.draw(g2);
 		
-		//OBJECT
+		//Objetos
 		for(int i = 0; i < obj[1].length; i++) {
 			if(obj[currentMap][i] != null) {
 				obj[currentMap][i].draw(g2);
 			}
 		}
 		
-		// MONSTERS
+		// Monstros
 		for (int i = 0; i < monsterList[1].length; i++) {
 			if (monsterList[currentMap][i] != null) {
 				monsterList[currentMap][i].draw(g2);
 			}
 		}
 		
-		// PROJECTILES
+		// Projeteis
 		for (int i = 0; i < projectileList.size(); i++) {
 			if (projectileList.get(i) != null) {
 				projectileList.get(i).draw(g2);
 			}
 		}
 		
-		// PLAYER
+		// Jogador
 		player.draw(g2);
 		
-		//UI
+		//Interface de Usuario
 		ui.draw(g2);
 		
 		g2.dispose();

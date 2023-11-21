@@ -6,11 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MapFileManager {
+public class MapFileManager {//Responsavel por ler o arquivo de save do mapa
 
     private static final String FILE_PATH = "res/saves/mapsave.txt";;
 
-    public static int readCurrentMap() {
+    public static int readCurrentMap() {//le qual fase esta salva no arquivo
         try {
             Scanner scanner = new Scanner(new File(FILE_PATH));
             if (scanner.hasNextInt()) {
@@ -24,7 +24,7 @@ public class MapFileManager {
         return 0;
     }
 
-    public static void writeCurrentMap(int currentMap) {
+    public static void writeCurrentMap(int currentMap) {//Escreve a fase atual no arquivo de save 
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
             writer.write(Integer.toString(currentMap));

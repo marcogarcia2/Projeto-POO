@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import object.OBJ_Fireball;
 
-public class Dino extends Entity {
+public class Dino extends Entity { // Define o inimigo da 3a fase
 	
 	GamePanel gp;
 	BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;

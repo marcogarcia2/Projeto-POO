@@ -11,7 +11,6 @@ import entity.Projectile;
 import main.GamePanel;
 
 public class OBJ_Bullet extends Projectile{
-	
 	GamePanel gp;
 	public BufferedImage vertical, horizontal;
 	

@@ -3,7 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler implements KeyListener {
+public class KeyHandler implements KeyListener {// Classe Responsavel pelo processamento de entradas do teclado
 
 	GamePanel gp;
 	public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
@@ -19,7 +19,7 @@ public class KeyHandler implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {//Verifica se tecla foi pressionada
 		// TODO Auto-generated method stub
 	
 		int code = e.getKeyCode();
@@ -66,7 +66,7 @@ public class KeyHandler implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
+	public void keyReleased(KeyEvent e) {//Verifica se tecla foi solta
 		// TODO Auto-generated method stub
 		int code = e.getKeyCode();
 		

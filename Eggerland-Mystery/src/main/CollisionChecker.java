@@ -3,6 +3,7 @@ package main;
 import entity.Entity;
 //import exception.OutOfBoundsException;
 
+//Essa classe checa colisoes no geral
 public class CollisionChecker {
 
 	GamePanel gp;
@@ -11,11 +12,11 @@ public class CollisionChecker {
 		this.gp = gp;
 	}
 	
-	public void checkTile(Entity entity) { // checa a colisao
+	public void checkTile(Entity entity) { // checa a colisao com paredes
 		int entityLeftWorldX = entity.x + entity.solidArea.x;
 		int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
 		int entityTopWorldY = entity.y + entity.solidArea.y;
-		int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height; //tem uma gambiarra aqui, foi adicionado o gp.tileSize pq o boneco tava indo um bloco a mais quando andando pra baixos
+		int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height; 
 		
 		int entityLeftCol = entityLeftWorldX/gp.tileSize;
 		int entityRightCol = entityRightWorldX/gp.tileSize;
@@ -63,23 +64,21 @@ public class CollisionChecker {
 			}
 			break;
 			
-		//default: break;
 		}
 	}
 	
 	public int checkObject(Entity entity, boolean player) {
 		//Essa funcao checa se o hitbox do personagem esta em interseccao com algum objeto.
-		//Acho melhor ou diminur o hitbox do objeto, porque ele pega direto o objeto;
 		
-		int index = 999;//Representa o numero do objeto no vetor de objetos
+		int index = 999;//Representa o numero do objeto no vetor de objetos.
 	
 		for(int i = 0; i < gp.obj[gp.currentMap].length; i++) {
 			
 			if(gp.obj[gp.currentMap][i] != null) {
-				// Get entity's solid area position
+				// Pega a area solida de uma entidade.
 				entity.solidArea.x = entity.x + entity.solidArea.x;
 				entity.solidArea.y = entity.y + entity.solidArea.y;
-				// Get the object's solid area positiond
+				// Pega a area solida de um objeto
 				gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].x + gp.obj[gp.currentMap][i].solidArea.x;
 				gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].y + gp.obj[gp.currentMap][i].solidArea.y;				
 
@@ -87,6 +86,7 @@ public class CollisionChecker {
 				switch(entity.direction) {
 				case "up":
 					entity.solidArea.y -= entity.speed;
+                                        //checa se as areas solidas se interceptam.
 					if(entity.solidArea.intersects(gp.obj[gp.currentMap][i].solidArea)) {
 						if(gp.obj[gp.currentMap][i].collisionOn == true) {
 							entity.collisionOn = true;
@@ -200,11 +200,11 @@ public class CollisionChecker {
 	
 	public boolean checkPlayer(Entity monster, Entity player) {
 	    
-	    // Get monster or projectile's solid area position
+	    // Pega a posicao da area solida de uma entidade
 	    monster.solidArea.x = monster.x + monster.solidArea.x;
 	    monster.solidArea.y = monster.y + monster.solidArea.y;
 
-        // Get the player's solid area position
+        // Pega a posicao da area solida do jogador
         player.solidArea.x = player.x + player.solidArea.width;
         player.solidArea.y = player.y + player.solidArea.height;
         
@@ -220,11 +220,11 @@ public class CollisionChecker {
 	public int checkKeyCollision(Entity entity, Entity key) {
 	    int index = 999;
 
-	    // Get entity's solid area position
+	     // Pega a posicao da area solida da entidade
 	    entity.solidArea.x = entity.x + entity.solidArea.x;
 	    entity.solidArea.y = entity.y + entity.solidArea.y;
 
-	    // Get the Key's solid area position
+	     // Pega a posicao da area solida das chaves
 	    key.solidArea.x = key.x + key.solidArea.x;
 	    key.solidArea.y = key.y + key.solidArea.y;
 

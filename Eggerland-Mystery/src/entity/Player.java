@@ -15,8 +15,9 @@ import main.MapFileManager;
 import object.OBJ_Chest;
 import object.OBJ_Eggshot;
 
-public class Player extends Entity {
+public class Player extends Entity {//Esta classe define os parametros do jogador, assim como a maior parte das interacoes
 
+        //Parametros Jogador
 	GamePanel gp;
 	KeyHandler keyH;
 	public int shotCount, keyCount;
@@ -70,7 +71,7 @@ public class Player extends Entity {
 		timerH = 0;
 	}
 	
-	public void getPlayerImage() {
+	public void getPlayerImage() {//Acessa as sprites a serem utilizadas
 		try {
 			
 			up1 = ImageIO.read(getClass().getResourceAsStream("/player/lolo_up_1.png"));
@@ -89,16 +90,15 @@ public class Player extends Entity {
 		}
 	}
 	
-	public void update() {
+	public void update() {//Verifica constantemente as interacoes do jogador com as mecanicas de jogo
 		
-		//solidArea.x = x;
-		//solidArea.y = y;
 		
 		if(lifeCount == 0){
 			gp.ui.gameFinished = true;
 			MapFileManager.writeCurrentMap(0);
 		}
-			
+		
+                //Movimentacao
 		if(keyH.upPressed == true) {
 			direction = "up";
 		}
@@ -112,18 +112,18 @@ public class Player extends Entity {
 			direction = "right";
 		}
 		
-		//CHECK COLLISION
+		//Checa Colisao
 		collisionOn = false;
 		try {
 			gp.cChecker.checkTile(this);
 		} catch(ArrayIndexOutOfBoundsException e) {
 			
 		}
-		//CHECK OBJECT COLLISION
+		//Checa colisao de objetos
 		int objIndex = gp.cChecker.checkObject(this, true);
 		pickUpObject(objIndex);
 		
-		//CHECK MONSTER COLLISION
+		//Checa colisao de monstros
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.monsterList);
 		if (monsterIndex != 999 && gp.currentMap != 0) {
 			if (gp.monsterList[gp.currentMap][monsterIndex].awake) {
@@ -135,7 +135,7 @@ public class Player extends Entity {
 		
 		if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 			
-			//IF COLLISION IS FALSE, PLAYER CAN MOVE
+			//Se colisao eh falsa, jogador pode se mover
 			if(collisionOn == false) {
 				
 				switch(direction) {
@@ -238,7 +238,7 @@ public class Player extends Entity {
 			
 			String objectName = gp.obj[gp.currentMap][i].name;
 			
-			switch(objectName) {
+			switch(objectName) {//Interacao especifica para cada tipo de objeto
 			
 			case "Key":
 				if(gp.currentMap == 0) shotCount += 2;
@@ -283,7 +283,7 @@ public class Player extends Entity {
 		}
 	}
 	
-	public void draw(Graphics2D g2) {
+	public void draw(Graphics2D g2) {//Desenha o personagem
 
 		BufferedImage image = null;
 		

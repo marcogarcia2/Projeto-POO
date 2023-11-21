@@ -5,6 +5,8 @@ import object.OBJ_Door;
 import object.OBJ_Key;
 import object.OBJ_Bloco;
 
+
+//Essa Classe eh responsavel pelo posicionamento de objetos no nivel
 public class AssetSetter {
 
 	GamePanel gp;
@@ -17,6 +19,10 @@ public class AssetSetter {
 		
 		int mapNum = 0;
 		
+                //gp.obj[numero do mapa][numero do objeto]
+                //gp.obj.x, posicao x
+                //gp.obj.y, posicao y
+                
 		gp.obj[mapNum][0] = new OBJ_Key(gp);
 		gp.obj[mapNum][0].x = 3 * gp.tileSize;
 		gp.obj[mapNum][0].y = 5 * gp.tileSize;

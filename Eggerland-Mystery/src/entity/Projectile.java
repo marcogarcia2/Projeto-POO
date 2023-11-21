@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import main.GamePanel;
 
-public abstract class Projectile extends Entity{
+public abstract class Projectile extends Entity{//Define os projeteis utilizados no jogo
 	
 	GamePanel gp;
 	Entity user;	

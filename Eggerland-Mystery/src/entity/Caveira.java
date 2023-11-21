@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import object.OBJ_Bloco;
 
-public class Caveira extends Entity{
+public class Caveira extends Entity{ // Define o inimigo da 2a fase
 
 	Random random;
 	GamePanel gp;
@@ -101,7 +101,7 @@ public class Caveira extends Entity{
 	    return false;
 	}
 	
-	private void moveEntity(String direction) {
+	private void moveEntity(String direction) { // Movimentacao aleatoria do inimigo
 	    int futureX = x;
 	    int futureY = y;
 

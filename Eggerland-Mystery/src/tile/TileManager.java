@@ -10,13 +10,14 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class TileManager {
+public class TileManager { //Posiciona os blocos no nivel
 
 		GamePanel gp;
 		public Tile[] tile;
 		public int mapTileNum[][][];
 		
 		public TileManager(GamePanel gp) {
+                    //A posicao dos blocos eh definida por uma matriz em um arquivo .txt
 			
 			this.gp = gp;
 			
@@ -33,7 +34,8 @@ public class TileManager {
 		public void getTileImage() {
 			
 			try {
-				
+                                //O tipo do bloco e definido por sua posicao no vetor 'tile[]'
+                            
 				tile[0] = new Tile();
 				tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/background.png"));
 				
@@ -65,7 +67,7 @@ public class TileManager {
 			}
 			
 		}
-		public void loadMap(String filePath , int map) {
+		public void loadMap(String filePath , int map) { // Define a posicao e tipo dos blocos baseado no arquivo .txt
 			
 			try {
 				InputStream is = getClass().getResourceAsStream(filePath);
@@ -98,7 +100,7 @@ public class TileManager {
 			}
 			
 		}
-		public void draw(Graphics2D g2) {
+		public void draw(Graphics2D g2) {//Desenha os sprites dos blocos
 			
 			int col = 0;
 			int row = 0;

@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class Cobrinha extends Entity{
+public class Cobrinha extends Entity{ // Define o inimigo da 1a fase
 
 	GamePanel gp;
 	private long timer = 101;

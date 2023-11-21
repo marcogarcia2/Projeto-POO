@@ -10,7 +10,16 @@ import javax.imageio.ImageIO;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Bloco extends Entity{
+/*Todas as classes OBJ possuem
+
+    definicao de parametros
+
+    update //verifica o comportamento do objeto
+
+    draw //Desenha o objeto na tela
+*/
+
+public class OBJ_Bloco extends Entity{//Define os parametros de mecanicas do bloco verde
 
 	GamePanel gp;
 	BufferedImage image;	
@@ -33,7 +42,7 @@ public class OBJ_Bloco extends Entity{
 		collisionOn = true;
 	}
 
-		private boolean checkMonsterCollision() {
+		private boolean checkMonsterCollision() { //Checa colisao com blocos
 			if (direction != null) {
 				int monster = gp.cChecker.checkEntity(this, gp.monsterList);
 				if (monster != 999) return true;
@@ -42,7 +51,7 @@ public class OBJ_Bloco extends Entity{
 			return false;
 		}
 		
-		private boolean checkObjectCollision() {
+		private boolean checkObjectCollision() { //Checa colisao com objetos
 			
 			for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
 		        if (gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals("Key")) {
