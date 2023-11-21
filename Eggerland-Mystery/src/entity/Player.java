@@ -17,7 +17,7 @@ import object.OBJ_Eggshot;
 
 public class Player extends Entity {//Esta classe define os parametros do jogador, assim como a maior parte das interacoes
 
-        //Parametros Jogador
+    //Parametros Jogador
 	GamePanel gp;
 	KeyHandler keyH;
 	public int shotCount, keyCount;
@@ -40,14 +40,8 @@ public class Player extends Entity {//Esta classe define os parametros do jogado
 		setDefaultValues();
 		getPlayerImage();		
 	}
+	
 	public void setDefaultValues() {
-		/*
-		 switch(gp.currentMap) {
-		case 0: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
-		case 1: x = 9*gp.tileSize; y = 9*gp.tileSize; break;
-		case 2: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
-		case 3: x = 1*gp.tileSize; y = 1*gp.tileSize; break;
-		 */
 		
 		switch(MapFileManager.readCurrentMap()) {
 		//posiciona o boneco de acordo com o nivel;

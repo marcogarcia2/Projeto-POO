@@ -24,8 +24,6 @@ public class Caveira extends Entity{ // Define o inimigo da 2a fase
 		this.gp = gp;
 		direction = "down";
 		solidArea = new Rectangle(1,1,46,46);
-//		solidAreaDefaultX = solidArea.x;
-//		solidAreaDefaultY = solidArea.y;
 		awake = false;
 		random = new Random();
 		collisionOn = true;

@@ -20,7 +20,7 @@ public class MapFileManager {//Responsavel por ler o arquivo de save do mapa
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        // Return a default value if the file doesn't exist or cannot be read
+        // valor padrao
         return 0;
     }
 

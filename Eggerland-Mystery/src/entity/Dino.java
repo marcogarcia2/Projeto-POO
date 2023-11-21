@@ -20,7 +20,6 @@ public class Dino extends Entity { // Define o inimigo da 3a fase
 		
 		this.gp = gp;
 		this.direction = direction;
-		//this.solidArea = new Rectangle(4,4,40,40);
 		awake = false;
 		isBall = false;
 		timer = 31;

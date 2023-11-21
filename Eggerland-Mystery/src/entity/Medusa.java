@@ -21,7 +21,6 @@ public class Medusa extends Entity { // Define o inimigo da 4a fase
 		
 		this.gp = gp;
 		this.direction = "down";
-		//this.solidArea = new Rectangle(4,4,40,40);
 		awake = false;
 		isBall = false;
 		timer = 11;

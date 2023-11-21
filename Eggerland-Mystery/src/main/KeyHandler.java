@@ -49,10 +49,6 @@ public class KeyHandler implements KeyListener {// Classe Responsavel pelo proce
 		}
 		if(code == KeyEvent.VK_R) { // Reseta o Personagem no Nivel
 			gp.resetGame();
-			/*switch(gp.currentMap) {
-			case 0: gp.tileM.loadMap("/maps/map1.txt", 0); break;
-			case 1: gp.tileM.loadMap("/maps/map2.txt", 1); break;
-			}*/
 		}	
 		if(code == KeyEvent.VK_O) { //Salva o nivel atual
 			//Salva o nivel atual 

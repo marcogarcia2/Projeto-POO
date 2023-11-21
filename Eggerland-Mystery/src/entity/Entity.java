@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public abstract class Entity {//Serve de base para todos os monstros e o player
 	
-        //Parametros de Entidade
+    //Parametros de Entidade
 	public int x,y;
 	public int speed;
 	public String direction;
@@ -15,14 +15,14 @@ public abstract class Entity {//Serve de base para todos os monstros e o player
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	
-        //Colisao
+    //Colisao
 	public boolean collisionOn = false;
 	
 	public Projectile projectile;
 
 	public int spriteNumH, spriteNumV;
 	
-        //Classe de desenho e update, nao implementadas
+    //Classe de desenho e update, nao implementadas
 	public abstract void update();
 	public abstract void draw(Graphics2D g2);
 	

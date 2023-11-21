@@ -17,9 +17,9 @@ public class MonsterSetter {//Classe Responsavel pelo posicionamento dos monstro
 		
 		int mapNum = 0;
 		
-                //gp.monsterList[numero do mapa][numero do objeto]
-                //gp.monsterList.x, posicao x
-                //gp.monsterList.y, posicao y
+        //gp.monsterList[numero do mapa][numero do objeto]
+        //gp.monsterList.x, posicao x
+        //gp.monsterList.y, posicao y
                 
 		gp.monsterList[mapNum][0] = new Cobrinha(gp);
 		gp.monsterList[mapNum][0].x = 2 * gp.tileSize;

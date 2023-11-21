@@ -146,11 +146,12 @@ public class CollisionChecker {
 
 	    for (int i = 0; i < target[gp.currentMap].length; i++) {
 	        if (target[gp.currentMap][i] != null) {
-	            // Get entity's solid area position
+	            
+	    	    // Pega a posicao da area solida da entidade
 	            entity.solidArea.x = entity.x + entity.solidArea.x;
 	            entity.solidArea.y = entity.y + entity.solidArea.y;
 
-	            // Get the object's solid area position
+	    	    // Pega a posicao da area solida de uma outra entidade da lista
 	            target[gp.currentMap][i].solidArea.x = target[gp.currentMap][i].x + target[gp.currentMap][i].solidArea.x;
 	            target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].y + target[gp.currentMap][i].solidArea.y;
 
@@ -230,7 +231,7 @@ public class CollisionChecker {
 
 	    if (entity.solidArea.intersects(key.solidArea)) {
 	        entity.collisionOn = true;
-	        index = 0; // Assumindo que só há uma Key no mapa
+	        index = 0;
 	    }
 
 	    entity.solidArea.x = entity.solidAreaDefaultX;

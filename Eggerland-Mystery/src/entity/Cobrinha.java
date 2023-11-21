@@ -21,11 +21,6 @@ public class Cobrinha extends Entity{ // Define o inimigo da 1a fase
 		
 		this.gp = gp;
 		this.direction = "down";
-		
-		//this.solidArea = new Rectangle(4,4,40,40);
-		//solidAreaDefaultX = solidArea.x;
-		//solidAreaDefaultY = solidArea.y;
-		
 		isBall = false;
 		random = new Random();
 		
